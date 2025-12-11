@@ -17,7 +17,8 @@ data class Transaction(
     val description: String,      // 描述
     val date: Long = System.currentTimeMillis(),  // 日期时间戳
     val note: String = "",        // 备注
-    val aiParsed: Boolean = false // 是否由AI解析生成
+    val aiParsed: Boolean = false, // 是否由AI解析生成
+    val imagePath: String? = null  // 照片路径
 )
 
 /**

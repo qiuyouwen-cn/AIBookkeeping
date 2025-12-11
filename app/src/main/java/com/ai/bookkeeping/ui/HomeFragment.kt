@@ -82,6 +82,16 @@ class HomeFragment : Fragment() {
         binding.btnQuickIncome.setOnClickListener {
             showQuickAddDialog(TransactionType.INCOME)
         }
+
+        // 拍照记账按钮
+        binding.btnPhotoRecord.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_photo)
+        }
+
+        // 语音记账按钮
+        binding.btnVoiceRecord.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_voice)
+        }
     }
 
     private fun parseAndSave(input: String) {

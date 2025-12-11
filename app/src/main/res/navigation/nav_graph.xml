@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_home_to_add"
             app:destination="@id/addTransactionFragment" />
+        <action
+            android:id="@+id/action_home_to_photo"
+            app:destination="@id/photoRecordFragment" />
+        <action
+            android:id="@+id/action_home_to_voice"
+            app:destination="@id/voiceRecordFragment" />
     </fragment>
 
     <fragment
@@ -32,5 +38,17 @@
         android:name="com.ai.bookkeeping.ui.AddTransactionFragment"
         android:label="手动记账"
         tools:layout="@layout/fragment_add_transaction" />
+
+    <fragment
+        android:id="@+id/photoRecordFragment"
+        android:name="com.ai.bookkeeping.ui.PhotoRecordFragment"
+        android:label="拍照记账"
+        tools:layout="@layout/fragment_photo_record" />
+
+    <fragment
+        android:id="@+id/voiceRecordFragment"
+        android:name="com.ai.bookkeeping.ui.VoiceRecordFragment"
+        android:label="语音记账"
+        tools:layout="@layout/fragment_voice_record" />
 
 </navigation>
