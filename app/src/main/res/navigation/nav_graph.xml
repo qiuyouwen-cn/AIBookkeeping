@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_home_to_voice"
             app:destination="@id/voiceRecordFragment" />
+        <action
+            android:id="@+id/action_home_to_category"
+            app:destination="@id/categoryManageFragment" />
     </fragment>
 
     <fragment
@@ -50,5 +53,11 @@
         android:name="com.ai.bookkeeping.ui.VoiceRecordFragment"
         android:label="语音记账"
         tools:layout="@layout/fragment_voice_record" />
+
+    <fragment
+        android:id="@+id/categoryManageFragment"
+        android:name="com.ai.bookkeeping.ui.CategoryManageFragment"
+        android:label="分类管理"
+        tools:layout="@layout/fragment_category_manage" />
 
 </navigation>

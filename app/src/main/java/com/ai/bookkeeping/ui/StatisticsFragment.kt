@@ -5,83 +5,122 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.ai.bookkeeping.databinding.FragmentStatisticsBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ai.bookkeeping.R
+import com.ai.bookkeeping.adapter.CategoryRankAdapter
 import com.ai.bookkeeping.model.TransactionType
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.google.android.material.chip.Chip
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-/**
- * 统计页面Fragment
- */
 class StatisticsFragment : Fragment() {
-
-    private var _binding: FragmentStatisticsBinding? = null
-    private val binding get() = _binding!!
 
     private val viewModel: TransactionViewModel by activityViewModels()
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale.CHINA)
+    private val monthFormat = SimpleDateFormat("yyyy年MM月", Locale.CHINA)
+
+    private lateinit var tvCurrentMonth: TextView
+    private lateinit var tvTotalIncome: TextView
+    private lateinit var tvTotalExpense: TextView
+    private lateinit var tvBalance: TextView
+    private lateinit var pieChart: PieChart
+    private lateinit var chipExpense: Chip
+    private lateinit var chipIncome: Chip
+    private lateinit var recyclerCategoryRank: RecyclerView
+    private lateinit var tvEmptyRank: TextView
+
+    private lateinit var categoryRankAdapter: CategoryRankAdapter
 
     private val pieColors = listOf(
-        Color.parseColor("#FF6384"),
-        Color.parseColor("#36A2EB"),
-        Color.parseColor("#FFCE56"),
-        Color.parseColor("#4BC0C0"),
-        Color.parseColor("#9966FF"),
-        Color.parseColor("#FF9F40"),
-        Color.parseColor("#E7E9ED"),
-        Color.parseColor("#7CB342"),
-        Color.parseColor("#D81B60"),
-        Color.parseColor("#1E88E5")
+        Color.parseColor("#6C63FF"),
+        Color.parseColor("#FF6B6B"),
+        Color.parseColor("#4D96FF"),
+        Color.parseColor("#6BCB77"),
+        Color.parseColor("#C850C0"),
+        Color.parseColor("#FF8E53"),
+        Color.parseColor("#00D9FF"),
+        Color.parseColor("#A66CFF"),
+        Color.parseColor("#2EC4B6"),
+        Color.parseColor("#FFD93D")
     )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_statistics, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews(view)
         setupPieChart()
+        setupRecyclerView()
         setupObservers()
-        setupTabListener()
+        setupChipListeners()
+    }
+
+    private fun initViews(view: View) {
+        tvCurrentMonth = view.findViewById(R.id.tvCurrentMonth)
+        tvTotalIncome = view.findViewById(R.id.tvTotalIncome)
+        tvTotalExpense = view.findViewById(R.id.tvTotalExpense)
+        tvBalance = view.findViewById(R.id.tvBalance)
+        pieChart = view.findViewById(R.id.pieChart)
+        chipExpense = view.findViewById(R.id.chipExpense)
+        chipIncome = view.findViewById(R.id.chipIncome)
+        recyclerCategoryRank = view.findViewById(R.id.recyclerCategoryRank)
+        tvEmptyRank = view.findViewById(R.id.tvEmptyRank)
+
+        tvCurrentMonth.text = monthFormat.format(Calendar.getInstance().time)
     }
 
     private fun setupPieChart() {
-        binding.pieChart.apply {
+        pieChart.apply {
             description.isEnabled = false
             setUsePercentValues(true)
-            setEntryLabelTextSize(12f)
-            setEntryLabelColor(Color.BLACK)
-            legend.isEnabled = true
+            setEntryLabelTextSize(11f)
+            setEntryLabelColor(Color.WHITE)
+            legend.isEnabled = false
             setHoleColor(Color.WHITE)
             setTransparentCircleAlpha(0)
-            holeRadius = 40f
+            holeRadius = 55f
             setDrawCenterText(true)
-            centerText = "支出分布"
+            setCenterTextSize(14f)
+            setCenterTextColor(Color.parseColor("#333333"))
+            centerText = "支出构成"
+            setExtraOffsets(10f, 10f, 10f, 10f)
+            animateY(800)
         }
+    }
+
+    private fun setupRecyclerView() {
+        categoryRankAdapter = CategoryRankAdapter()
+        recyclerCategoryRank.layoutManager = LinearLayoutManager(requireContext())
+        recyclerCategoryRank.adapter = categoryRankAdapter
     }
 
     private fun setupObservers() {
         viewModel.currentMonthIncome.observe(viewLifecycleOwner) { income ->
-            binding.tvTotalIncome.text = currencyFormat.format(income ?: 0.0)
+            tvTotalIncome.text = currencyFormat.format(income ?: 0.0)
             updateBalance()
         }
 
         viewModel.currentMonthExpense.observe(viewLifecycleOwner) { expense ->
-            binding.tvTotalExpense.text = currencyFormat.format(expense ?: 0.0)
+            tvTotalExpense.text = currencyFormat.format(expense ?: 0.0)
             updateBalance()
         }
 
@@ -91,27 +130,19 @@ class StatisticsFragment : Fragment() {
     private fun updateBalance() {
         val income = viewModel.currentMonthIncome.value ?: 0.0
         val expense = viewModel.currentMonthExpense.value ?: 0.0
-        binding.tvBalance.text = currencyFormat.format(income - expense)
+        tvBalance.text = currencyFormat.format(income - expense)
     }
 
-    private fun setupTabListener() {
-        binding.tabLayout.addOnTabSelectedListener(object : com.google.android.material.tabs.TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: com.google.android.material.tabs.TabLayout.Tab?) {
-                when (tab?.position) {
-                    0 -> {
-                        loadCategoryData(TransactionType.EXPENSE)
-                        binding.pieChart.centerText = "支出分布"
-                    }
-                    1 -> {
-                        loadCategoryData(TransactionType.INCOME)
-                        binding.pieChart.centerText = "收入分布"
-                    }
-                }
-            }
+    private fun setupChipListeners() {
+        chipExpense.setOnClickListener {
+            loadCategoryData(TransactionType.EXPENSE)
+            pieChart.centerText = "支出构成"
+        }
 
-            override fun onTabUnselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
-            override fun onTabReselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
-        })
+        chipIncome.setOnClickListener {
+            loadCategoryData(TransactionType.INCOME)
+            pieChart.centerText = "收入构成"
+        }
     }
 
     private fun loadCategoryData(type: TransactionType) {
@@ -128,26 +159,44 @@ class StatisticsFragment : Fragment() {
 
         viewModel.getCategoryTotals(type, startOfMonth, endOfMonth).observe(viewLifecycleOwner) { categoryTotals ->
             if (categoryTotals.isEmpty()) {
-                binding.pieChart.clear()
-                binding.pieChart.centerText = "暂无数据"
+                pieChart.clear()
+                pieChart.centerText = "暂无数据"
+                tvEmptyRank.visibility = View.VISIBLE
+                recyclerCategoryRank.visibility = View.GONE
+                categoryRankAdapter.submitList(emptyList())
                 return@observe
             }
 
+            tvEmptyRank.visibility = View.GONE
+            recyclerCategoryRank.visibility = View.VISIBLE
+
+            // Update pie chart
             val entries = categoryTotals.map { PieEntry(it.total.toFloat(), it.category) }
             val dataSet = PieDataSet(entries, "").apply {
                 colors = pieColors.take(entries.size)
-                valueTextSize = 14f
+                valueTextSize = 12f
                 valueTextColor = Color.WHITE
-                valueFormatter = PercentFormatter(binding.pieChart)
+                valueFormatter = PercentFormatter(pieChart)
+                sliceSpace = 2f
             }
 
-            binding.pieChart.data = PieData(dataSet)
-            binding.pieChart.invalidate()
-        }
-    }
+            pieChart.data = PieData(dataSet)
+            pieChart.invalidate()
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+            // Calculate total for percentage
+            val total = categoryTotals.sumOf { it.total }
+
+            // Update category ranking list
+            val rankItems = categoryTotals.mapIndexed { index, item ->
+                CategoryRankAdapter.CategoryRankItem(
+                    category = item.category,
+                    amount = item.total,
+                    percentage = if (total > 0) (item.total / total * 100).toFloat() else 0f,
+                    color = pieColors.getOrElse(index) { pieColors[0] },
+                    type = type
+                )
+            }
+            categoryRankAdapter.submitList(rankItems)
+        }
     }
 }

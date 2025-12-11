@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
-    <color name="primary_light">#BBDEFB</color>
-    <color name="accent">#FF4081</color>
+    <!-- 主色调 - 渐变紫蓝 -->
+    <color name="primary">#6C63FF</color>
+    <color name="primary_dark">#5A52D5</color>
+    <color name="primary_light">#A5A0FF</color>
+    <color name="primary_variant">#3F3D99</color>
 
-    <color name="income_green">#4CAF50</color>
-    <color name="expense_red">#F44336</color>
+    <!-- 强调色 -->
+    <color name="accent">#FF6584</color>
+    <color name="accent_light">#FF8FA3</color>
 
-    <color name="background_light">#F5F5F5</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
+    <!-- 收入支出颜色 -->
+    <color name="income_green">#26DE81</color>
+    <color name="income_green_light">#7BF1B1</color>
+    <color name="income_green_bg">#E8FBF0</color>
+
+    <color name="expense_red">#FF6B6B</color>
+    <color name="expense_red_light">#FF9999</color>
+    <color name="expense_red_bg">#FFF0F0</color>
+
+    <!-- 背景色 -->
+    <color name="background_light">#F8F9FE</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="background_card">#FFFFFF</color>
+    <color name="background_gray">#F0F2F5</color>
+
+    <!-- 文字颜色 -->
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- 分割线 -->
+    <color name="divider">#E5E7EB</color>
+
+    <!-- 分类颜色 -->
+    <color name="category_food">#FF6B6B</color>
+    <color name="category_transport">#4ECDC4</color>
+    <color name="category_shopping">#FFE66D</color>
+    <color name="category_entertainment">#95E1D3</color>
+    <color name="category_medical">#F38181</color>
+    <color name="category_education">#AA96DA</color>
+    <color name="category_housing">#FCBAD3</color>
+    <color name="category_communication">#A8D8EA</color>
+    <color name="category_clothing">#D4A5A5</color>
+    <color name="category_other">#C9CCD5</color>
+
+    <!-- 渐变色 -->
+    <color name="gradient_start">#6C63FF</color>
+    <color name="gradient_end">#4158D0</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <!-- 阴影 -->
+    <color name="shadow">#1A000000</color>
+
+    <!-- 卡片背景 -->
+    <color name="card_bg_semi_transparent">#33FFFFFF</color>
+    <color name="surface_light">#F0F2F5</color>
+
+    <!-- 浅色主题文字 -->
+    <color name="text_secondary_light">#B0B0B0</color>
+
+    <!-- 浅色分割线 -->
+    <color name="divider_light">#40FFFFFF</color>
 </resources>

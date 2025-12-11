@@ -2,7 +2,6 @@ package com.ai.bookkeeping.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 /**
  * 交易记录实体类
@@ -11,14 +10,16 @@ import java.util.Date
 data class Transaction(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val amount: Double,           // 金额
-    val type: TransactionType,    // 类型：收入/支出
-    val category: String,         // 分类
-    val description: String,      // 描述
+    val amount: Double,              // 金额
+    val type: TransactionType,       // 类型：收入/支出
+    val category: String,            // 分类名称（兼容旧数据）
+    val categoryId: Long? = null,    // 分类ID
+    val subCategoryId: Long? = null, // 子分类ID
+    val description: String,         // 描述
     val date: Long = System.currentTimeMillis(),  // 日期时间戳
-    val note: String = "",        // 备注
-    val aiParsed: Boolean = false, // 是否由AI解析生成
-    val imagePath: String? = null  // 照片路径
+    val note: String = "",           // 备注
+    val aiParsed: Boolean = false,   // 是否由AI解析生成
+    val imagePath: String? = null    // 照片路径
 )
 
 /**
@@ -30,7 +31,7 @@ enum class TransactionType {
 }
 
 /**
- * 预定义的支出分类
+ * 预定义的支出分类（保留用于AI解析兼容）
  */
 object ExpenseCategories {
     val list = listOf(
@@ -40,7 +41,7 @@ object ExpenseCategories {
 }
 
 /**
- * 预定义的收入分类
+ * 预定义的收入分类（保留用于AI解析兼容）
  */
 object IncomeCategories {
     val list = listOf(
