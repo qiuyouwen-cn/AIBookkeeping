@@ -10,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ai.bookkeeping.R
 import com.ai.bookkeeping.databinding.FragmentHomeBinding
-import com.ai.bookkeeping.model.Transaction
 import com.ai.bookkeeping.model.TransactionType
+import com.ai.bookkeeping.service.FloatingWindowService
 import com.ai.bookkeeping.util.AIParser
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
 
         setupObservers()
         setupClickListeners()
+        setupFloatingSwitch()
     }
 
     private fun setupObservers() {
@@ -134,6 +135,26 @@ class HomeFragment : Fragment() {
             viewModel.insert(transaction)
         }
         dialog.show(parentFragmentManager, "quick_add")
+    }
+
+    private fun setupFloatingSwitch() {
+        // 更新开关状态
+        binding.switchFloating.isChecked = FloatingWindowService.isRunning
+
+        binding.switchFloating.setOnCheckedChangeListener { _, isChecked ->
+            val mainActivity = activity as? MainActivity
+            if (isChecked) {
+                mainActivity?.startFloatingService()
+            } else {
+                mainActivity?.stopFloatingService()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 每次返回时更新开关状态
+        binding.switchFloating.isChecked = FloatingWindowService.isRunning
     }
 
     override fun onDestroyView() {
