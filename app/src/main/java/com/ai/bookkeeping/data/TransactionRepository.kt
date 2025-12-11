@@ -1,0 +1,57 @@
+package com.ai.bookkeeping.data
+
+import androidx.lifecycle.LiveData
+import com.ai.bookkeeping.model.Transaction
+import com.ai.bookkeeping.model.TransactionType
+
+/**
+ * 交易记录仓库类
+ */
+class TransactionRepository(private val transactionDao: TransactionDao) {
+
+    val allTransactions: LiveData<List<Transaction>> = transactionDao.getAllTransactions()
+
+    suspend fun insert(transaction: Transaction): Long {
+        return transactionDao.insert(transaction)
+    }
+
+    suspend fun update(transaction: Transaction) {
+        transactionDao.update(transaction)
+    }
+
+    suspend fun delete(transaction: Transaction) {
+        transactionDao.delete(transaction)
+    }
+
+    suspend fun getTransactionById(id: Long): Transaction? {
+        return transactionDao.getTransactionById(id)
+    }
+
+    fun getTransactionsByType(type: TransactionType): LiveData<List<Transaction>> {
+        return transactionDao.getTransactionsByType(type)
+    }
+
+    fun getTransactionsByDateRange(startDate: Long, endDate: Long): LiveData<List<Transaction>> {
+        return transactionDao.getTransactionsByDateRange(startDate, endDate)
+    }
+
+    fun getTotalIncome(): LiveData<Double?> {
+        return transactionDao.getTotalByType(TransactionType.INCOME)
+    }
+
+    fun getTotalExpense(): LiveData<Double?> {
+        return transactionDao.getTotalByType(TransactionType.EXPENSE)
+    }
+
+    fun getTotalByTypeAndDateRange(type: TransactionType, startDate: Long, endDate: Long): LiveData<Double?> {
+        return transactionDao.getTotalByTypeAndDateRange(type, startDate, endDate)
+    }
+
+    fun getCategoryTotals(type: TransactionType, startDate: Long, endDate: Long): LiveData<List<CategoryTotal>> {
+        return transactionDao.getCategoryTotals(type, startDate, endDate)
+    }
+
+    suspend fun getTransactionsByDateRangeSync(startDate: Long, endDate: Long): List<Transaction> {
+        return transactionDao.getTransactionsByDateRangeSync(startDate, endDate)
+    }
+}

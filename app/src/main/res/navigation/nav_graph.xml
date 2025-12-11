@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ai.bookkeeping.ui.HomeFragment"
+        android:label="首页"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_add"
+            app:destination="@id/addTransactionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="com.ai.bookkeeping.ui.RecordsFragment"
+        android:label="记录"
+        tools:layout="@layout/fragment_records" />
+
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.ai.bookkeeping.ui.StatisticsFragment"
+        android:label="统计"
+        tools:layout="@layout/fragment_statistics" />
+
+    <fragment
+        android:id="@+id/addTransactionFragment"
+        android:name="com.ai.bookkeeping.ui.AddTransactionFragment"
+        android:label="手动记账"
+        tools:layout="@layout/fragment_add_transaction" />
+
+</navigation>
