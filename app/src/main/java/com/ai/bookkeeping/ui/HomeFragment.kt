@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -18,7 +16,9 @@ import com.ai.bookkeeping.model.TransactionType
 import com.ai.bookkeeping.service.FloatingWindowService
 import com.ai.bookkeeping.util.AIParser
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,15 +33,16 @@ class HomeFragment : Fragment() {
 
     private lateinit var tvIncome: TextView
     private lateinit var tvExpense: TextView
-    private lateinit var etAiInput: EditText
-    private lateinit var btnAiRecord: Button
+    private lateinit var etAiInput: TextInputEditText
+    private lateinit var btnAiRecord: MaterialButton
     private lateinit var progressBar: ProgressBar
-    private lateinit var cardVoice: CardView
-    private lateinit var cardPhoto: CardView
-    private lateinit var cardExpense: CardView
-    private lateinit var cardIncome: CardView
-    private lateinit var btnCategoryManage: Button
-    private lateinit var fabVoice: FloatingActionButton
+    private lateinit var cardVoice: MaterialCardView
+    private lateinit var cardPhoto: MaterialCardView
+    private lateinit var cardExpense: MaterialCardView
+    private lateinit var cardIncome: MaterialCardView
+    private lateinit var btnCategoryManage: MaterialButton
+    private lateinit var cardFloatingToggle: MaterialCardView
+    private lateinit var ivFloatingIcon: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,17 +61,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        tvIncome = view.findViewById(R.id.tvIncome)
-        tvExpense = view.findViewById(R.id.tvExpense)
-        etAiInput = view.findViewById(R.id.etAiInput)
-        btnAiRecord = view.findViewById(R.id.btnAiRecord)
-        progressBar = view.findViewById(R.id.progressBar)
-        cardVoice = view.findViewById(R.id.cardVoice)
-        cardPhoto = view.findViewById(R.id.cardPhoto)
-        cardExpense = view.findViewById(R.id.cardExpense)
-        cardIncome = view.findViewById(R.id.cardIncome)
-        btnCategoryManage = view.findViewById(R.id.btnCategoryManage)
-        fabVoice = view.findViewById(R.id.fabVoice)
+        tvIncome = view.findViewById(R.id.tv_income)
+        tvExpense = view.findViewById(R.id.tv_expense)
+        etAiInput = view.findViewById(R.id.et_ai_input)
+        btnAiRecord = view.findViewById(R.id.btn_ai_record)
+        progressBar = view.findViewById(R.id.progress_bar)
+        cardVoice = view.findViewById(R.id.btn_voice_record)
+        cardPhoto = view.findViewById(R.id.btn_photo_record)
+        cardExpense = view.findViewById(R.id.btn_quick_expense)
+        cardIncome = view.findViewById(R.id.btn_quick_income)
+        btnCategoryManage = view.findViewById(R.id.btn_category_manage)
+        cardFloatingToggle = view.findViewById(R.id.card_floating_toggle)
+        ivFloatingIcon = view.findViewById(R.id.iv_floating_icon)
     }
 
     private fun setupObservers() {
@@ -119,15 +121,15 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_home_to_category)
         }
 
-        // 悬浮窗语音按钮
-        fabVoice.setOnClickListener {
+        // 悬浮窗开关
+        cardFloatingToggle.setOnClickListener {
             val mainActivity = activity as? MainActivity
             if (FloatingWindowService.isRunning) {
                 mainActivity?.stopFloatingService()
-                fabVoice.setImageResource(R.drawable.ic_mic)
+                ivFloatingIcon.setImageResource(R.drawable.ic_mic)
             } else {
                 mainActivity?.startFloatingService()
-                fabVoice.setImageResource(R.drawable.ic_mic_off)
+                ivFloatingIcon.setImageResource(R.drawable.ic_mic_off)
             }
         }
     }
@@ -178,9 +180,9 @@ class HomeFragment : Fragment() {
         super.onResume()
         // 更新悬浮窗按钮状态
         if (FloatingWindowService.isRunning) {
-            fabVoice.setImageResource(R.drawable.ic_mic_off)
+            ivFloatingIcon.setImageResource(R.drawable.ic_mic_off)
         } else {
-            fabVoice.setImageResource(R.drawable.ic_mic)
+            ivFloatingIcon.setImageResource(R.drawable.ic_mic)
         }
     }
 }
