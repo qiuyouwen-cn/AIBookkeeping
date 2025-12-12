@@ -1,68 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 主色调 - 渐变紫蓝 -->
-    <color name="primary">#6C63FF</color>
-    <color name="primary_dark">#5A52D5</color>
-    <color name="primary_light">#A5A0FF</color>
-    <color name="primary_variant">#3F3D99</color>
+    <!-- ==================== 全新设计系统 ==================== -->
 
-    <!-- 强调色 -->
-    <color name="accent">#FF6584</color>
-    <color name="accent_light">#FF8FA3</color>
+    <!-- 主色调 - 现代紫蓝渐变系 (更柔和舒适) -->
+    <color name="primary">#5B5FE3</color>
+    <color name="primary_dark">#4A4ED6</color>
+    <color name="primary_light">#8B8EF0</color>
+    <color name="primary_variant">#3D40B8</color>
+    <color name="primary_container">#E8E8FF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#1A1C5E</color>
 
-    <!-- 收入支出颜色 -->
-    <color name="income_green">#26DE81</color>
-    <color name="income_green_light">#7BF1B1</color>
-    <color name="income_green_bg">#E8FBF0</color>
+    <!-- 次要色调 - 青色系 -->
+    <color name="secondary">#00BFA6</color>
+    <color name="secondary_dark">#00A896</color>
+    <color name="secondary_light">#5EEAD4</color>
+    <color name="secondary_container">#E0FFF8</color>
+    <color name="on_secondary">#FFFFFF</color>
 
+    <!-- 强调色 - 珊瑚粉 -->
+    <color name="accent">#FF6B9D</color>
+    <color name="accent_light">#FF9DC1</color>
+    <color name="accent_dark">#E8527D</color>
+    <color name="accent_container">#FFE8EF</color>
+
+    <!-- 收入颜色 - 翠绿系 -->
+    <color name="income_green">#00C48C</color>
+    <color name="income_green_dark">#00A878</color>
+    <color name="income_green_light">#7BEBB6</color>
+    <color name="income_green_bg">#E5FBF3</color>
+    <color name="income_green_surface">#F0FDF8</color>
+
+    <!-- 支出颜色 - 珊瑚红系 -->
     <color name="expense_red">#FF6B6B</color>
-    <color name="expense_red_light">#FF9999</color>
+    <color name="expense_red_dark">#E85555</color>
+    <color name="expense_red_light">#FF9E9E</color>
     <color name="expense_red_bg">#FFF0F0</color>
+    <color name="expense_red_surface">#FFFAFA</color>
 
-    <!-- 背景色 -->
-    <color name="background_light">#F8F9FE</color>
+    <!-- 背景色系 -->
+    <color name="background_primary">#FAFBFF</color>
+    <color name="background_light">#F5F7FF</color>
     <color name="background_white">#FFFFFF</color>
     <color name="background_card">#FFFFFF</color>
-    <color name="background_gray">#F0F2F5</color>
+    <color name="background_gray">#F0F2F8</color>
+    <color name="background_elevated">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F3F4F9</color>
+    <color name="surface_light">#F0F2F5</color>
 
-    <!-- 文字颜色 -->
-    <color name="text_primary">#1A1A2E</color>
-    <color name="text_secondary">#6B7280</color>
-    <color name="text_hint">#9CA3AF</color>
+    <!-- 文字颜色系 -->
+    <color name="text_primary">#1A1D2E</color>
+    <color name="text_secondary">#6B7194</color>
+    <color name="text_tertiary">#9CA3C2</color>
+    <color name="text_hint">#B0B7D3</color>
+    <color name="text_disabled">#CED3E6</color>
     <color name="text_white">#FFFFFF</color>
+    <color name="text_on_primary">#FFFFFF</color>
 
-    <!-- 分割线 -->
-    <color name="divider">#E5E7EB</color>
+    <!-- 浅色主题文字 (用于深色背景) -->
+    <color name="text_secondary_light">#B8BCCC</color>
+    <color name="text_primary_light">#FFFFFF</color>
 
-    <!-- 分类颜色 -->
-    <color name="category_food">#FF6B6B</color>
-    <color name="category_transport">#4ECDC4</color>
-    <color name="category_shopping">#FFE66D</color>
-    <color name="category_entertainment">#95E1D3</color>
-    <color name="category_medical">#F38181</color>
-    <color name="category_education">#AA96DA</color>
-    <color name="category_housing">#FCBAD3</color>
-    <color name="category_communication">#A8D8EA</color>
-    <color name="category_clothing">#D4A5A5</color>
-    <color name="category_other">#C9CCD5</color>
+    <!-- 分割线颜色 -->
+    <color name="divider">#E8EAF2</color>
+    <color name="divider_light">#40FFFFFF</color>
+    <color name="outline">#E0E3EE</color>
+    <color name="outline_variant">#ECEEF5</color>
 
-    <!-- 渐变色 -->
-    <color name="gradient_start">#6C63FF</color>
-    <color name="gradient_end">#4158D0</color>
+    <!-- 分类颜色 - 更鲜艳的色板 -->
+    <color name="category_food">#FF7675</color>
+    <color name="category_transport">#00CEC9</color>
+    <color name="category_shopping">#FDCB6E</color>
+    <color name="category_entertainment">#55EFC4</color>
+    <color name="category_medical">#FF8A5C</color>
+    <color name="category_education">#A29BFE</color>
+    <color name="category_housing">#FD79A8</color>
+    <color name="category_communication">#74B9FF</color>
+    <color name="category_clothing">#DDA0DD</color>
+    <color name="category_other">#B2BEC3</color>
+    <color name="category_salary">#00B894</color>
+    <color name="category_bonus">#FFD93D</color>
+    <color name="category_investment">#6C5CE7</color>
 
+    <!-- 渐变色端点 -->
+    <color name="gradient_start">#667EEA</color>
+    <color name="gradient_center">#5B5FE3</color>
+    <color name="gradient_end">#764BA2</color>
+
+    <!-- 次要渐变 (青绿) -->
+    <color name="gradient_secondary_start">#11998E</color>
+    <color name="gradient_secondary_end">#38EF7D</color>
+
+    <!-- 收入渐变 -->
+    <color name="gradient_income_start">#00C48C</color>
+    <color name="gradient_income_end">#00E4A0</color>
+
+    <!-- 支出渐变 -->
+    <color name="gradient_expense_start">#FF6B6B</color>
+    <color name="gradient_expense_end">#FF8E8E</color>
+
+    <!-- 基础色 -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <!-- 阴影 -->
-    <color name="shadow">#1A000000</color>
+    <!-- 阴影色 -->
+    <color name="shadow">#14000000</color>
+    <color name="shadow_light">#0A000000</color>
+    <color name="shadow_medium">#1F000000</color>
 
     <!-- 卡片背景 -->
-    <color name="card_bg_semi_transparent">#33FFFFFF</color>
-    <color name="surface_light">#F0F2F5</color>
+    <color name="card_bg_semi_transparent">#40FFFFFF</color>
+    <color name="card_bg_glass">#80FFFFFF</color>
 
-    <!-- 浅色主题文字 -->
-    <color name="text_secondary_light">#B0B0B0</color>
+    <!-- 快捷操作卡片背景 -->
+    <color name="card_voice_bg">#F0EFFF</color>
+    <color name="card_photo_bg">#FFF0F5</color>
+    <color name="card_expense_bg">#FFF5F5</color>
+    <color name="card_income_bg">#F0FFF8</color>
 
-    <!-- 浅色分割线 -->
-    <color name="divider_light">#40FFFFFF</color>
+    <!-- 状态颜色 -->
+    <color name="success">#00C48C</color>
+    <color name="warning">#FFB020</color>
+    <color name="error">#FF4757</color>
+    <color name="info">#3498DB</color>
+
+    <!-- Chip 颜色 -->
+    <color name="chip_selected_bg">#5B5FE3</color>
+    <color name="chip_unselected_bg">#F0F2F8</color>
+    <color name="chip_selected_text">#FFFFFF</color>
+    <color name="chip_unselected_text">#6B7194</color>
+
+    <!-- 底部导航 -->
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="bottom_nav_indicator">#E8E8FF</color>
+
+    <!-- FAB 颜色 -->
+    <color name="fab_bg">#5B5FE3</color>
+    <color name="fab_icon">#FFFFFF</color>
+
+    <!-- 图表颜色 -->
+    <color name="chart_color_1">#5B5FE3</color>
+    <color name="chart_color_2">#00C48C</color>
+    <color name="chart_color_3">#FF6B9D</color>
+    <color name="chart_color_4">#FFB020</color>
+    <color name="chart_color_5">#00CEC9</color>
+    <color name="chart_color_6">#A29BFE</color>
+    <color name="chart_color_7">#FD79A8</color>
+    <color name="chart_color_8">#74B9FF</color>
+
+    <!-- 波纹颜色 -->
+    <color name="ripple_light">#1A5B5FE3</color>
+    <color name="ripple_dark">#335B5FE3</color>
 </resources>
