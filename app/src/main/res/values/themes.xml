@@ -195,50 +195,55 @@
 
     <!-- ==================== 文字样式 ==================== -->
 
-    <style name="TextAppearance.AIBookkeeping.Headline1">
+    <!-- 基础文字样式 -->
+    <style name="TextAppearance.AIBookkeeping" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.AIBookkeeping.Headline1" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Headline2">
+    <style name="TextAppearance.AIBookkeeping.Headline2" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">-0.01</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Headline3">
+    <style name="TextAppearance.AIBookkeeping.Headline3" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Title">
+    <style name="TextAppearance.AIBookkeeping.Title" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Subtitle">
+    <style name="TextAppearance.AIBookkeeping.Subtitle" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Body">
+    <style name="TextAppearance.AIBookkeeping.Body" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Caption">
+    <style name="TextAppearance.AIBookkeeping.Caption" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/text_secondary</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Label">
+    <style name="TextAppearance.AIBookkeeping.Label" parent="TextAppearance.AIBookkeeping">
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/text_tertiary</item>
         <item name="android:textAllCaps">true</item>
@@ -246,21 +251,21 @@
     </style>
 
     <!-- 金额显示样式 -->
-    <style name="TextAppearance.AIBookkeeping.Amount.Large">
+    <style name="TextAppearance.AIBookkeeping.Amount" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.AIBookkeeping.Amount.Large" parent="TextAppearance.AIBookkeeping.Amount">
         <item name="android:textSize">32sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Amount.Medium">
+    <style name="TextAppearance.AIBookkeeping.Amount.Medium" parent="TextAppearance.AIBookkeeping.Amount">
         <item name="android:textSize">22sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
-    <style name="TextAppearance.AIBookkeeping.Amount.Small">
+    <style name="TextAppearance.AIBookkeeping.Amount.Small" parent="TextAppearance.AIBookkeeping.Amount">
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- ==================== 对话框样式 ==================== -->
