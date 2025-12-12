@@ -1,12 +1,8 @@
 package com.ai.bookkeeping.ui
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.speech.RecognitionListener
-import android.speech.RecognizerIntent
-import android.speech.SpeechRecognizer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +12,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ai.bookkeeping.R
+import com.ai.bookkeeping.ai.ASRService
 import com.ai.bookkeeping.databinding.FragmentVoiceRecordBinding
 import com.ai.bookkeeping.model.TransactionType
 import com.ai.bookkeeping.util.AIParser
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,6 +28,7 @@ import java.util.Locale
 
 /**
  * 语音记账Fragment
+ * 使用自定义 ASR 服务进行语音识别
  */
 class VoiceRecordFragment : Fragment() {
 
@@ -36,8 +36,7 @@ class VoiceRecordFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: TransactionViewModel by activityViewModels()
-    private var speechRecognizer: SpeechRecognizer? = null
-    private var isListening = false
+    private var isRecording = false
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale.CHINA)
 
     // 权限请求启动器
@@ -45,7 +44,7 @@ class VoiceRecordFragment : Fragment() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
-            startListening()
+            startRecording()
         } else {
             Toast.makeText(requireContext(), "需要麦克风权限才能语音记账", Toast.LENGTH_SHORT).show()
         }
@@ -63,82 +62,74 @@ class VoiceRecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupSpeechRecognizer()
+        // 初始化 ASR 服务
+        ASRService.init(requireContext())
+
+        setupUI()
         setupClickListeners()
+        setupASRCallbacks()
     }
 
-    private fun setupSpeechRecognizer() {
-        if (SpeechRecognizer.isRecognitionAvailable(requireContext())) {
-            speechRecognizer = SpeechRecognizer.createSpeechRecognizer(requireContext())
-            speechRecognizer?.setRecognitionListener(object : RecognitionListener {
-                override fun onReadyForSpeech(params: Bundle?) {
-                    binding.tvStatus.text = "请说话..."
-                    binding.tvHint.text = "例如：\"早餐花了15块\" 或 \"收到工资5000\""
-                }
-
-                override fun onBeginningOfSpeech() {
-                    binding.tvStatus.text = "正在聆听..."
-                    binding.animationView.visibility = View.VISIBLE
-                }
-
-                override fun onRmsChanged(rmsdB: Float) {
-                    // 可以根据音量调整动画
-                }
-
-                override fun onBufferReceived(buffer: ByteArray?) {}
-
-                override fun onEndOfSpeech() {
-                    binding.tvStatus.text = "正在识别..."
-                    stopListeningUI()
-                }
-
-                override fun onError(error: Int) {
-                    val errorMessage = when (error) {
-                        SpeechRecognizer.ERROR_NO_MATCH -> "未能识别，请重试"
-                        SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "未检测到语音"
-                        SpeechRecognizer.ERROR_NETWORK -> "网络错误，请检查网络连接"
-                        SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "网络超时"
-                        else -> "识别错误，请重试"
-                    }
-                    binding.tvStatus.text = errorMessage
-                    stopListeningUI()
-                }
-
-                override fun onResults(results: Bundle?) {
-                    val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                    if (!matches.isNullOrEmpty()) {
-                        val text = matches[0]
-                        binding.tvRecognizedText.text = "\"$text\""
-                        binding.tvRecognizedText.visibility = View.VISIBLE
-                        parseAndSave(text)
-                    } else {
-                        binding.tvStatus.text = "未能识别，请重试"
-                    }
-                    stopListeningUI()
-                }
-
-                override fun onPartialResults(partialResults: Bundle?) {
-                    val matches = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                    if (!matches.isNullOrEmpty()) {
-                        binding.tvRecognizedText.text = "\"${matches[0]}\""
-                        binding.tvRecognizedText.visibility = View.VISIBLE
-                    }
-                }
-
-                override fun onEvent(eventType: Int, params: Bundle?) {}
-            })
-        } else {
-            binding.tvStatus.text = "您的设备不支持语音识别"
-            binding.btnVoice.isEnabled = false
-        }
+    private fun setupUI() {
+        binding.tvStatus.text = "点击下方按钮开始"
+        binding.cardResult.visibility = View.GONE
+        binding.tvRecognizedText.visibility = View.GONE
     }
 
     private fun setupClickListeners() {
         binding.btnVoice.setOnClickListener {
-            if (isListening) {
-                stopListening()
+            if (isRecording) {
+                stopRecording()
             } else {
-                checkPermissionAndStart()
+                // 检查是否配置了服务器
+                if (!ASRService.hasServerConfig(requireContext())) {
+                    showServerConfigDialog()
+                } else {
+                    checkPermissionAndStart()
+                }
+            }
+        }
+
+        // 长按设置服务器
+        binding.btnVoice.setOnLongClickListener {
+            showServerConfigDialog()
+            true
+        }
+    }
+
+    private fun setupASRCallbacks() {
+        ASRService.onStateChange = { state ->
+            activity?.runOnUiThread {
+                when (state) {
+                    ASRService.RecordingState.IDLE -> {
+                        binding.tvStatus.text = "点击下方按钮开始"
+                    }
+                    ASRService.RecordingState.CONNECTING -> {
+                        binding.tvStatus.text = "正在连接..."
+                    }
+                    ASRService.RecordingState.RECORDING -> {
+                        binding.tvStatus.text = "正在聆听..."
+                        binding.animationView.visibility = View.VISIBLE
+                    }
+                    ASRService.RecordingState.PROCESSING -> {
+                        binding.tvStatus.text = "正在识别..."
+                        binding.animationView.visibility = View.GONE
+                    }
+                    ASRService.RecordingState.COMPLETED -> {
+                        binding.tvStatus.text = "识别完成"
+                    }
+                    ASRService.RecordingState.ERROR -> {
+                        binding.tvStatus.text = "识别失败"
+                        binding.animationView.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
+        ASRService.onError = { error ->
+            activity?.runOnUiThread {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                stopRecordingUI()
             }
         }
     }
@@ -149,7 +140,7 @@ class VoiceRecordFragment : Fragment() {
                 requireContext(),
                 Manifest.permission.RECORD_AUDIO
             ) == PackageManager.PERMISSION_GRANTED -> {
-                startListening()
+                startRecording()
             }
             else -> {
                 requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
@@ -157,35 +148,88 @@ class VoiceRecordFragment : Fragment() {
         }
     }
 
-    private fun startListening() {
-        isListening = true
+    private fun startRecording() {
+        isRecording = true
         binding.btnVoice.setIconResource(R.drawable.ic_stop)
         binding.btnVoice.text = "停止"
         binding.tvRecognizedText.visibility = View.GONE
         binding.cardResult.visibility = View.GONE
+        binding.animationView.visibility = View.VISIBLE
+        binding.tvStatus.text = "正在聆听..."
 
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-CN")
-            putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
-            putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
-        }
+        // 使用流式识别
+        ASRService.startStreaming(
+            onPartialResult = { text ->
+                activity?.runOnUiThread {
+                    if (text.isNotEmpty()) {
+                        binding.tvRecognizedText.text = "\"$text\""
+                        binding.tvRecognizedText.visibility = View.VISIBLE
+                    }
+                }
+            },
+            onFinalResult = { text ->
+                activity?.runOnUiThread {
+                    if (text.isNotEmpty()) {
+                        binding.tvRecognizedText.text = "\"$text\""
+                        binding.tvRecognizedText.visibility = View.VISIBLE
+                        parseAndSave(text)
+                    } else {
+                        binding.tvStatus.text = "未能识别，请重试"
+                    }
+                    stopRecordingUI()
+                }
+            },
+            onStreamError = { error ->
+                activity?.runOnUiThread {
+                    binding.tvStatus.text = "识别错误: $error"
+                    stopRecordingUI()
 
-        try {
-            speechRecognizer?.startListening(intent)
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "启动语音识别失败", Toast.LENGTH_SHORT).show()
-            stopListeningUI()
+                    // 如果流式识别失败，尝试使用文件转录方式
+                    tryFileTranscribe()
+                }
+            }
+        )
+    }
+
+    /**
+     * 尝试使用文件转录方式（作为流式识别的备用方案）
+     */
+    private fun tryFileTranscribe() {
+        isRecording = true
+        binding.btnVoice.setIconResource(R.drawable.ic_stop)
+        binding.btnVoice.text = "录音中..."
+        binding.tvStatus.text = "正在录音（最长10秒）..."
+        binding.animationView.visibility = View.VISIBLE
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val result = ASRService.recordAndTranscribe(requireContext(), 10000)
+
+            result.fold(
+                onSuccess = { text ->
+                    if (text.isNotEmpty()) {
+                        binding.tvRecognizedText.text = "\"$text\""
+                        binding.tvRecognizedText.visibility = View.VISIBLE
+                        parseAndSave(text)
+                    } else {
+                        binding.tvStatus.text = "未能识别，请重试"
+                    }
+                },
+                onFailure = { error ->
+                    binding.tvStatus.text = "识别失败: ${error.message}"
+                }
+            )
+
+            stopRecordingUI()
         }
     }
 
-    private fun stopListening() {
-        speechRecognizer?.stopListening()
-        stopListeningUI()
+    private fun stopRecording() {
+        ASRService.finishRecording()
+        stopRecordingUI()
     }
 
-    private fun stopListeningUI() {
-        isListening = false
+    private fun stopRecordingUI() {
+        isRecording = false
         binding.btnVoice.setIconResource(R.drawable.ic_mic)
         binding.btnVoice.text = "开始语音记账"
         binding.animationView.visibility = View.GONE
@@ -210,6 +254,14 @@ class VoiceRecordFragment : Fragment() {
                                 ContextCompat.getColor(requireContext(), R.color.income_green)
                         )
 
+                        // 更新卡片背景色
+                        binding.cardResult.setCardBackgroundColor(
+                            if (result.type == TransactionType.EXPENSE)
+                                ContextCompat.getColor(requireContext(), R.color.expense_red_bg)
+                            else
+                                ContextCompat.getColor(requireContext(), R.color.income_green_bg)
+                        )
+
                         // 保存到数据库
                         viewModel.insert(result)
                         binding.tvStatus.text = "记账成功！"
@@ -232,9 +284,36 @@ class VoiceRecordFragment : Fragment() {
         }
     }
 
+    /**
+     * 显示服务器配置对话框
+     */
+    private fun showServerConfigDialog() {
+        val dialogView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.dialog_asr_server, null)
+
+        val etServerUrl = dialogView.findViewById<TextInputEditText>(R.id.etServerUrl)
+        val currentUrl = ASRService.getServerUrl(requireContext())
+        if (currentUrl != "YOUR_SERVER:5678") {
+            etServerUrl.setText(currentUrl)
+        }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("设置语音识别服务器")
+            .setView(dialogView)
+            .setPositiveButton("保存") { _, _ ->
+                val serverUrl = etServerUrl.text.toString().trim()
+                if (serverUrl.isNotEmpty()) {
+                    ASRService.setServerUrl(requireContext(), serverUrl)
+                    Toast.makeText(requireContext(), "服务器地址已保存", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("取消", null)
+            .show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        speechRecognizer?.destroy()
+        ASRService.release()
         _binding = null
     }
 }
