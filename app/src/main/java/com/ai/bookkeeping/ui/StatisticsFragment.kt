@@ -61,8 +61,8 @@ class StatisticsFragment : Fragment() {
     private lateinit var progressAiAnalysis: ProgressBar
     private lateinit var tvAiAnalysis: TextView
     private lateinit var btnCloseAnalysis: ImageButton
-    private lateinit var btnExport: ImageButton
-    private lateinit var btnAiSettings: ImageButton
+    private lateinit var btnExport: MaterialCardView
+    private lateinit var btnAiSettings: MaterialCardView
     private lateinit var tabChartType: TabLayout
     private lateinit var chipExpense: Chip
     private lateinit var chipIncome: Chip
