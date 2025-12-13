@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/glass_white_dark"
     app:cardCornerRadius="20dp"
-    app:cardElevation="2dp"
-    app:strokeWidth="0dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/glass_border"
     app:rippleColor="@color/ripple_light">
 
     <LinearLayout
@@ -20,8 +21,8 @@
 
         <!-- 分类图标 -->
         <FrameLayout
-            android:layout_width="52dp"
-            android:layout_height="52dp">
+            android:layout_width="48dp"
+            android:layout_height="48dp">
 
             <View
                 android:id="@+id/viewCategoryBg"
@@ -31,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/ivCategoryIcon"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:contentDescription="分类图标"
                 app:tint="@color/white"
@@ -100,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/text_hint"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 tools:text="12-11 12:30" />
 
         </LinearLayout>

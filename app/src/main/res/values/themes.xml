@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 主题 - Material Design 3 增强 -->
+    <!-- 主题 - 玻璃拟态风格 -->
     <style name="Theme.AIBookkeeping" parent="Theme.Material3.Light.NoActionBar">
         <!-- 主色调 -->
         <item name="colorPrimary">@color/primary</item>
@@ -21,7 +21,7 @@
         <item name="colorTertiary">@color/accent</item>
 
         <!-- 背景和表面 -->
-        <item name="android:colorBackground">@color/background_light</item>
+        <item name="android:colorBackground">@color/background_primary</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorSurfaceVariant">@color/surface_variant</item>
         <item name="colorOnSurface">@color/text_primary</item>
@@ -34,159 +34,161 @@
         <!-- 错误颜色 -->
         <item name="colorError">@color/error</item>
 
-        <!-- 状态栏 -->
-        <item name="android:statusBarColor">@color/primary</item>
+        <!-- 状态栏 - 沉浸式 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
 
         <!-- 导航栏 -->
-        <item name="android:navigationBarColor">@color/background_white</item>
+        <item name="android:navigationBarColor">@color/bottom_nav_bg</item>
         <item name="android:windowLightNavigationBar">true</item>
 
         <!-- 波纹效果 -->
         <item name="colorControlHighlight">@color/ripple_light</item>
 
         <!-- 按钮样式 -->
-        <item name="materialButtonStyle">@style/Widget.AIBookkeeping.Button</item>
-        <item name="materialButtonOutlinedStyle">@style/Widget.AIBookkeeping.Button.Outlined</item>
+        <item name="materialButtonStyle">@style/Widget.Glass.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Glass.Button.Outlined</item>
 
         <!-- 卡片样式 -->
-        <item name="materialCardViewStyle">@style/Widget.AIBookkeeping.CardView</item>
+        <item name="materialCardViewStyle">@style/Widget.Glass.CardView</item>
 
         <!-- 文本输入框样式 -->
-        <item name="textInputStyle">@style/Widget.AIBookkeeping.TextInputLayout</item>
+        <item name="textInputStyle">@style/Widget.Glass.TextInputLayout</item>
 
         <!-- 底部导航样式 -->
-        <item name="bottomNavigationStyle">@style/Widget.AIBookkeeping.BottomNavigation</item>
+        <item name="bottomNavigationStyle">@style/Widget.Glass.BottomNavigation</item>
 
         <!-- Chip样式 -->
-        <item name="chipStyle">@style/Widget.AIBookkeeping.Chip</item>
+        <item name="chipStyle">@style/Widget.Glass.Chip</item>
     </style>
 
-    <!-- ==================== 按钮样式 ==================== -->
+    <!-- ==================== 玻璃拟态按钮样式 ==================== -->
 
-    <style name="Widget.AIBookkeeping.Button" parent="Widget.Material3.Button">
+    <style name="Widget.Glass.Button" parent="Widget.Material3.Button">
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/primary</item>
-        <item name="cornerRadius">16dp</item>
+        <item name="cornerRadius">24dp</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">14dp</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="elevation">2dp</item>
+        <item name="elevation">0dp</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+    <style name="Widget.Glass.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:textColor">@color/primary</item>
-        <item name="strokeColor">@color/primary</item>
+        <item name="strokeColor">@color/primary_light</item>
         <item name="strokeWidth">1.5dp</item>
-        <item name="cornerRadius">16dp</item>
+        <item name="cornerRadius">24dp</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">14dp</item>
         <item name="rippleColor">@color/ripple_light</item>
+        <item name="backgroundTint">@color/glass_primary_light</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.Button.Text" parent="Widget.Material3.Button.TextButton">
+    <style name="Widget.Glass.Button.Text" parent="Widget.Material3.Button.TextButton">
         <item name="android:textColor">@color/primary</item>
         <item name="rippleColor">@color/ripple_light</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.Button.Large" parent="Widget.AIBookkeeping.Button">
+    <style name="Widget.Glass.Button.Large" parent="Widget.Glass.Button">
         <item name="android:minHeight">56dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="cornerRadius">20dp</item>
+        <item name="cornerRadius">28dp</item>
     </style>
 
-    <!-- FAB 样式 -->
-    <style name="Widget.AIBookkeeping.FAB" parent="Widget.Material3.FloatingActionButton.Primary">
+    <!-- FAB 样式 - 玻璃效果 -->
+    <style name="Widget.Glass.FAB" parent="Widget.Material3.FloatingActionButton.Primary">
         <item name="backgroundTint">@color/primary</item>
         <item name="tint">@color/white</item>
-        <item name="elevation">8dp</item>
-        <item name="fabCustomSize">64dp</item>
+        <item name="elevation">4dp</item>
+        <item name="fabCustomSize">60dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Glass.FAB</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.FAB.Small" parent="Widget.Material3.FloatingActionButton.Primary">
-        <item name="backgroundTint">@color/primary</item>
-        <item name="tint">@color/white</item>
-        <item name="elevation">6dp</item>
-        <item name="fabCustomSize">48dp</item>
+    <style name="ShapeAppearance.Glass.FAB" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
-    <!-- ==================== 卡片样式 ==================== -->
+    <!-- ==================== 玻璃拟态卡片样式 ==================== -->
 
-    <style name="Widget.AIBookkeeping.CardView" parent="Widget.Material3.CardView.Filled">
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">20dp</item>
-        <item name="cardElevation">2dp</item>
-        <item name="strokeWidth">0dp</item>
-        <item name="contentPadding">16dp</item>
-    </style>
-
-    <style name="Widget.AIBookkeeping.CardView.Elevated" parent="Widget.AIBookkeeping.CardView">
-        <item name="cardElevation">6dp</item>
-    </style>
-
-    <style name="Widget.AIBookkeeping.CardView.Outlined" parent="Widget.Material3.CardView.Outlined">
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">20dp</item>
-        <item name="strokeColor">@color/outline</item>
+    <style name="Widget.Glass.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/glass_white_dark</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">0dp</item>
         <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/glass_border</item>
+        <item name="contentPadding">20dp</item>
     </style>
 
-    <!-- ==================== 文本输入框样式 ==================== -->
+    <style name="Widget.Glass.CardView.Solid" parent="Widget.Glass.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
 
-    <style name="Widget.AIBookkeeping.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@color/surface_variant</item>
-        <item name="boxCornerRadiusTopStart">16dp</item>
-        <item name="boxCornerRadiusTopEnd">16dp</item>
-        <item name="boxCornerRadiusBottomStart">16dp</item>
-        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    <style name="Widget.Glass.CardView.Transparent" parent="Widget.Glass.CardView">
+        <item name="cardBackgroundColor">@color/glass_white_light</item>
+        <item name="strokeColor">@color/glass_border</item>
+    </style>
+
+    <!-- ==================== 玻璃拟态输入框样式 ==================== -->
+
+    <style name="Widget.Glass.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/glass_white</item>
+        <item name="boxCornerRadiusTopStart">20dp</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxCornerRadiusBottomStart">20dp</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
-        <item name="boxStrokeColor">@color/primary</item>
+        <item name="boxStrokeColor">@color/primary_light</item>
         <item name="hintTextColor">@color/text_hint</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.TextInputLayout.Outlined" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusTopStart">16dp</item>
-        <item name="boxCornerRadiusTopEnd">16dp</item>
-        <item name="boxCornerRadiusBottomStart">16dp</item>
-        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    <style name="Widget.Glass.TextInputLayout.Outlined" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">20dp</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxCornerRadiusBottomStart">20dp</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>
         <item name="boxStrokeColor">@color/outline</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
     </style>
 
-    <!-- ==================== 底部导航样式 ==================== -->
+    <!-- ==================== 玻璃拟态底部导航样式 ==================== -->
 
-    <style name="Widget.AIBookkeeping.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+    <style name="Widget.Glass.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
         <item name="backgroundTint">@color/bottom_nav_bg</item>
         <item name="itemIconTint">@color/bottom_nav_item_color</item>
         <item name="itemTextColor">@color/bottom_nav_item_color</item>
-        <item name="itemActiveIndicatorStyle">@style/Widget.AIBookkeeping.BottomNavigation.ActiveIndicator</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Glass.BottomNavigation.ActiveIndicator</item>
         <item name="labelVisibilityMode">labeled</item>
-        <item name="elevation">8dp</item>
-        <item name="android:minHeight">64dp</item>
+        <item name="elevation">0dp</item>
+        <item name="android:minHeight">72dp</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.BottomNavigation.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/bottom_nav_indicator</item>
+    <style name="Widget.Glass.BottomNavigation.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary_container</item>
     </style>
 
-    <!-- ==================== Chip 样式 ==================== -->
+    <!-- ==================== 玻璃拟态 Chip 样式 ==================== -->
 
-    <style name="Widget.AIBookkeeping.Chip" parent="Widget.Material3.Chip.Filter">
-        <item name="chipCornerRadius">20dp</item>
-        <item name="chipMinHeight">36dp</item>
+    <style name="Widget.Glass.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">24dp</item>
+        <item name="chipMinHeight">40dp</item>
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color_selector</item>
         <item name="chipStrokeWidth">0dp</item>
         <item name="checkedIconVisible">false</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.Chip.Choice" parent="Widget.Material3.Chip.Filter">
-        <item name="chipCornerRadius">20dp</item>
-        <item name="chipMinHeight">36dp</item>
+    <style name="Widget.Glass.Chip.Choice" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">24dp</item>
+        <item name="chipMinHeight">40dp</item>
         <item name="chipBackgroundColor">@color/chip_bg_color_selector</item>
         <item name="android:textColor">@color/chip_text_color_selector</item>
         <item name="chipStrokeWidth">0dp</item>
@@ -201,21 +203,21 @@
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Headline1" parent="TextAppearance.AIBookkeeping">
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Headline2" parent="TextAppearance.AIBookkeeping">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">-0.01</item>
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Headline3" parent="TextAppearance.AIBookkeeping">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -233,13 +235,13 @@
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Body" parent="TextAppearance.AIBookkeeping">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Caption" parent="TextAppearance.AIBookkeeping">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/text_secondary</item>
     </style>
 
@@ -257,15 +259,15 @@
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Amount.Large" parent="TextAppearance.AIBookkeeping.Amount">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">36sp</item>
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Amount.Medium" parent="TextAppearance.AIBookkeeping.Amount">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="TextAppearance.AIBookkeeping.Amount.Small" parent="TextAppearance.AIBookkeeping.Amount">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
     <!-- ==================== 对话框样式 ==================== -->
@@ -273,29 +275,29 @@
     <style name="Theme.AIBookkeeping.Dialog" parent="Theme.Material3.Light.Dialog">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="dialogCornerRadius">24dp</item>
-        <item name="android:windowBackground">@drawable/bg_dialog_rounded</item>
+        <item name="dialogCornerRadius">28dp</item>
+        <item name="android:windowBackground">@drawable/bg_dialog_glass</item>
     </style>
 
     <style name="Theme.AIBookkeeping.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog">
         <item name="colorPrimary">@color/primary</item>
-        <item name="bottomSheetStyle">@style/Widget.AIBookkeeping.BottomSheet</item>
+        <item name="bottomSheetStyle">@style/Widget.Glass.BottomSheet</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.BottomSheet" parent="Widget.Material3.BottomSheet">
-        <item name="backgroundTint">@color/white</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.AIBookkeeping.BottomSheet</item>
+    <style name="Widget.Glass.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="backgroundTint">@color/glass_white_dark</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Glass.BottomSheet</item>
     </style>
 
-    <style name="ShapeAppearance.AIBookkeeping.BottomSheet" parent="">
+    <style name="ShapeAppearance.Glass.BottomSheet" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">24dp</item>
-        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeTopLeft">28dp</item>
+        <item name="cornerSizeTopRight">28dp</item>
     </style>
 
     <!-- ==================== Tab 样式 ==================== -->
 
-    <style name="Widget.AIBookkeeping.TabLayout" parent="Widget.Material3.TabLayout">
+    <style name="Widget.Glass.TabLayout" parent="Widget.Material3.TabLayout">
         <item name="tabIndicatorColor">@color/primary</item>
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabSelectedTextColor">@color/primary</item>
@@ -306,15 +308,26 @@
 
     <!-- ==================== 进度条样式 ==================== -->
 
-    <style name="Widget.AIBookkeeping.ProgressBar" parent="Widget.Material3.CircularProgressIndicator">
+    <style name="Widget.Glass.ProgressBar" parent="Widget.Material3.CircularProgressIndicator">
         <item name="indicatorColor">@color/primary</item>
         <item name="trackColor">@color/surface_variant</item>
     </style>
 
-    <style name="Widget.AIBookkeeping.LinearProgressBar" parent="Widget.Material3.LinearProgressIndicator">
+    <style name="Widget.Glass.LinearProgressBar" parent="Widget.Material3.LinearProgressIndicator">
         <item name="indicatorColor">@color/primary</item>
         <item name="trackColor">@color/surface_variant</item>
         <item name="trackCornerRadius">4dp</item>
     </style>
+
+    <!-- 兼容旧样式名称 -->
+    <style name="Widget.AIBookkeeping.Button" parent="Widget.Glass.Button" />
+    <style name="Widget.AIBookkeeping.Button.Outlined" parent="Widget.Glass.Button.Outlined" />
+    <style name="Widget.AIBookkeeping.Button.Text" parent="Widget.Glass.Button.Text" />
+    <style name="Widget.AIBookkeeping.CardView" parent="Widget.Glass.CardView" />
+    <style name="Widget.AIBookkeeping.TextInputLayout" parent="Widget.Glass.TextInputLayout" />
+    <style name="Widget.AIBookkeeping.BottomNavigation" parent="Widget.Glass.BottomNavigation" />
+    <style name="Widget.AIBookkeeping.Chip" parent="Widget.Glass.Chip" />
+    <style name="Widget.AIBookkeeping.Chip.Choice" parent="Widget.Glass.Chip.Choice" />
+    <style name="Widget.AIBookkeeping.FAB" parent="Widget.Glass.FAB" />
 
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="@drawable/bg_gradient_dreamy">
 
     <!-- 顶部区域 -->
     <com.google.android.material.appbar.AppBarLayout
@@ -16,19 +16,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_primary"
             android:orientation="vertical"
-            android:paddingBottom="24dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="20dp">
 
             <!-- 标题 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
                 android:text="记账记录"
-                android:textColor="@color/white"
-                android:textSize="26sp"
+                android:textColor="@color/text_primary"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:letterSpacing="-0.02" />
 
@@ -36,7 +35,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
@@ -46,10 +44,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#30FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="@color/glass_white"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeWidth="0dp">
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/glass_border">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -62,19 +61,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="本月支出"
-                            android:textColor="#B0FFFFFF"
-                            android:textSize="12sp" />
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/tvMonthExpense"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/expense_red"
+                            android:textSize="22sp"
                             android:textStyle="bold"
                             android:fontFamily="sans-serif-medium"
-                            tools:text="¥1,234.56" />
+                            tools:text="¥1,234" />
 
                     </LinearLayout>
 
@@ -86,10 +85,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#30FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="@color/glass_white"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeWidth="0dp">
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/glass_border">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -102,19 +102,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="本月收入"
-                            android:textColor="#B0FFFFFF"
-                            android:textSize="12sp" />
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/tvMonthIncome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/income_green"
+                            android:textSize="22sp"
                             android:textStyle="bold"
                             android:fontFamily="sans-serif-medium"
-                            tools:text="¥5,000.00" />
+                            tools:text="¥5,000" />
 
                     </LinearLayout>
 
@@ -122,37 +122,24 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <!-- 筛选标签 -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="-16dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:strokeWidth="0dp">
-
+            <!-- 筛选标签 -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="12dp"
-                    app:chipSpacingHorizontal="8dp"
+                    app:chipSpacingHorizontal="10dp"
                     app:selectionRequired="true"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipAll"
-                        style="@style/Widget.AIBookkeeping.Chip.Choice"
+                        style="@style/Widget.Glass.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
@@ -160,14 +147,14 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipExpense"
-                        style="@style/Widget.AIBookkeeping.Chip.Choice"
+                        style="@style/Widget.Glass.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="支出" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipIncome"
-                        style="@style/Widget.AIBookkeeping.Chip.Choice"
+                        style="@style/Widget.Glass.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="收入" />
@@ -176,7 +163,7 @@
 
             </HorizontalScrollView>
 
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -186,9 +173,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="100dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="120dp"
         android:overScrollMode="never"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_transaction" />
@@ -207,16 +194,17 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:cardBackgroundColor="@color/surface_variant"
+            app:cardBackgroundColor="@color/glass_white"
             app:cardCornerRadius="50dp"
             app:cardElevation="0dp"
-            app:strokeWidth="0dp">
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/glass_border">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_gravity="center"
-                android:alpha="0.5"
+                android:alpha="0.6"
                 android:contentDescription="空记录"
                 android:src="@drawable/ic_empty_records"
                 app:tint="@color/text_hint" />
