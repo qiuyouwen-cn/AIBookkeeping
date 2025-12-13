@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#FF6B9D</color>
+    <color name="accent_container">#FFE8EF</color>
+    <color name="accent_dark">#E8527D</color>
+    <color name="accent_light">#FF9DC1</color>
+    <color name="background_card">#FFFFFF</color>
+    <color name="background_elevated">#FFFFFF</color>
+    <color name="background_gray">#F0F2F8</color>
+    <color name="background_light">#F5F7FF</color>
+    <color name="background_primary">#FAFBFF</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="bottom_nav_indicator">#E8E8FF</color>
+    <color name="card_bg_glass">#80FFFFFF</color>
+    <color name="card_bg_semi_transparent">#40FFFFFF</color>
+    <color name="card_expense_bg">#FFF5F5</color>
+    <color name="card_income_bg">#F0FFF8</color>
+    <color name="card_photo_bg">#FFF0F5</color>
+    <color name="card_voice_bg">#F0EFFF</color>
+    <color name="category_bonus">#FFD93D</color>
+    <color name="category_clothing">#DDA0DD</color>
+    <color name="category_communication">#74B9FF</color>
+    <color name="category_education">#A29BFE</color>
+    <color name="category_entertainment">#55EFC4</color>
+    <color name="category_food">#FF7675</color>
+    <color name="category_housing">#FD79A8</color>
+    <color name="category_investment">#6C5CE7</color>
+    <color name="category_medical">#FF8A5C</color>
+    <color name="category_other">#B2BEC3</color>
+    <color name="category_salary">#00B894</color>
+    <color name="category_shopping">#FDCB6E</color>
+    <color name="category_transport">#00CEC9</color>
+    <color name="chart_color_1">#5B5FE3</color>
+    <color name="chart_color_2">#00C48C</color>
+    <color name="chart_color_3">#FF6B9D</color>
+    <color name="chart_color_4">#FFB020</color>
+    <color name="chart_color_5">#00CEC9</color>
+    <color name="chart_color_6">#A29BFE</color>
+    <color name="chart_color_7">#FD79A8</color>
+    <color name="chart_color_8">#74B9FF</color>
+    <color name="chip_selected_bg">#5B5FE3</color>
+    <color name="chip_selected_text">#FFFFFF</color>
+    <color name="chip_unselected_bg">#F0F2F8</color>
+    <color name="chip_unselected_text">#6B7194</color>
+    <color name="divider">#E8EAF2</color>
+    <color name="divider_light">#40FFFFFF</color>
+    <color name="error">#FF4757</color>
+    <color name="expense_red">#FF6B6B</color>
+    <color name="expense_red_bg">#FFF0F0</color>
+    <color name="expense_red_dark">#E85555</color>
+    <color name="expense_red_light">#FF9E9E</color>
+    <color name="expense_red_surface">#FFFAFA</color>
+    <color name="fab_bg">#5B5FE3</color>
+    <color name="fab_icon">#FFFFFF</color>
+    <color name="gradient_center">#5B5FE3</color>
+    <color name="gradient_end">#764BA2</color>
+    <color name="gradient_expense_end">#FF8E8E</color>
+    <color name="gradient_expense_start">#FF6B6B</color>
+    <color name="gradient_income_end">#00E4A0</color>
+    <color name="gradient_income_start">#00C48C</color>
+    <color name="gradient_secondary_end">#38EF7D</color>
+    <color name="gradient_secondary_start">#11998E</color>
+    <color name="gradient_start">#667EEA</color>
+    <color name="income_green">#00C48C</color>
+    <color name="income_green_bg">#E5FBF3</color>
+    <color name="income_green_dark">#00A878</color>
+    <color name="income_green_light">#7BEBB6</color>
+    <color name="income_green_surface">#F0FDF8</color>
+    <color name="info">#3498DB</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#1A1C5E</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="outline">#E0E3EE</color>
+    <color name="outline_variant">#ECEEF5</color>
+    <color name="primary">#5B5FE3</color>
+    <color name="primary_container">#E8E8FF</color>
+    <color name="primary_dark">#4A4ED6</color>
+    <color name="primary_light">#8B8EF0</color>
+    <color name="primary_variant">#3D40B8</color>
+    <color name="ripple_dark">#335B5FE3</color>
+    <color name="ripple_light">#1A5B5FE3</color>
+    <color name="secondary">#00BFA6</color>
+    <color name="secondary_container">#E0FFF8</color>
+    <color name="secondary_dark">#00A896</color>
+    <color name="secondary_light">#5EEAD4</color>
+    <color name="shadow">#14000000</color>
+    <color name="shadow_light">#0A000000</color>
+    <color name="shadow_medium">#1F000000</color>
+    <color name="success">#00C48C</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_light">#F0F2F5</color>
+    <color name="surface_variant">#F3F4F9</color>
+    <color name="text_disabled">#CED3E6</color>
+    <color name="text_hint">#B0B7D3</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_primary">#1A1D2E</color>
+    <color name="text_primary_light">#FFFFFF</color>
+    <color name="text_secondary">#6B7194</color>
+    <color name="text_secondary_light">#B8BCCC</color>
+    <color name="text_tertiary">#9CA3C2</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="warning">#FFB020</color>
+    <color name="white">#FFFFFF</color>
+    <string name="app_name">AI记账</string>
+    <style name="ShapeAppearance.AIBookkeeping.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Amount" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Amount.Large" parent="TextAppearance.AIBookkeeping.Amount">
+        <item name="android:textSize">32sp</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Amount.Medium" parent="TextAppearance.AIBookkeeping.Amount">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Amount.Small" parent="TextAppearance.AIBookkeeping.Amount">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Body" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Caption" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Headline1" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Headline2" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Headline3" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Label" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Subtitle" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="TextAppearance.AIBookkeeping.Title" parent="TextAppearance.AIBookkeeping">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Theme.AIBookkeeping" parent="Theme.Material3.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+
+        
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_container</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+
+        
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorTertiary">@color/accent</item>
+
+        
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+
+        
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
+
+        
+        <item name="colorError">@color/error</item>
+
+        
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        
+        <item name="android:navigationBarColor">@color/background_white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        
+        <item name="colorControlHighlight">@color/ripple_light</item>
+
+        
+        <item name="materialButtonStyle">@style/Widget.AIBookkeeping.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.AIBookkeeping.Button.Outlined</item>
+
+        
+        <item name="materialCardViewStyle">@style/Widget.AIBookkeeping.CardView</item>
+
+        
+        <item name="textInputStyle">@style/Widget.AIBookkeeping.TextInputLayout</item>
+
+        
+        <item name="bottomNavigationStyle">@style/Widget.AIBookkeeping.BottomNavigation</item>
+
+        
+        <item name="chipStyle">@style/Widget.AIBookkeeping.Chip</item>
+    </style>
+    <style name="Theme.AIBookkeeping.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="bottomSheetStyle">@style/Widget.AIBookkeeping.BottomSheet</item>
+    </style>
+    <style name="Theme.AIBookkeeping.Dialog" parent="Theme.Material3.Light.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="dialogCornerRadius">24dp</item>
+        <item name="android:windowBackground">@drawable/bg_dialog_rounded</item>
+    </style>
+    <style name="Widget.AIBookkeeping.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/bottom_nav_bg</item>
+        <item name="itemIconTint">@color/bottom_nav_item_color</item>
+        <item name="itemTextColor">@color/bottom_nav_item_color</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.AIBookkeeping.BottomNavigation.ActiveIndicator</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="elevation">8dp</item>
+        <item name="android:minHeight">64dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.BottomNavigation.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bottom_nav_indicator</item>
+    </style>
+    <style name="Widget.AIBookkeeping.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="backgroundTint">@color/white</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.AIBookkeeping.BottomSheet</item>
+    </style>
+    <style name="Widget.AIBookkeeping.Button" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="elevation">2dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.Button.Large" parent="Widget.AIBookkeeping.Button">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/primary</item>
+        <item name="strokeColor">@color/primary</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="rippleColor">@color/ripple_light</item>
+    </style>
+    <style name="Widget.AIBookkeeping.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/primary</item>
+        <item name="rippleColor">@color/ripple_light</item>
+    </style>
+    <style name="Widget.AIBookkeeping.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.CardView.Elevated" parent="Widget.AIBookkeeping.CardView">
+        <item name="cardElevation">6dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.CardView.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="strokeColor">@color/outline</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color_selector</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+    <style name="Widget.AIBookkeeping.Chip.Choice" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="chipBackgroundColor">@color/chip_bg_color_selector</item>
+        <item name="android:textColor">@color/chip_text_color_selector</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+    <style name="Widget.AIBookkeeping.FAB" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="tint">@color/white</item>
+        <item name="elevation">8dp</item>
+        <item name="fabCustomSize">64dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.FAB.Small" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="tint">@color/white</item>
+        <item name="elevation">6dp</item>
+        <item name="fabCustomSize">48dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.LinearProgressBar" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="indicatorColor">@color/primary</item>
+        <item name="trackColor">@color/surface_variant</item>
+        <item name="trackCornerRadius">4dp</item>
+    </style>
+    <style name="Widget.AIBookkeeping.ProgressBar" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorColor">@color/primary</item>
+        <item name="trackColor">@color/surface_variant</item>
+    </style>
+    <style name="Widget.AIBookkeeping.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIndicatorColor">@color/primary</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabSelectedTextColor">@color/primary</item>
+        <item name="tabTextColor">@color/text_secondary</item>
+        <item name="tabRippleColor">@color/ripple_light</item>
+        <item name="tabIndicatorFullWidth">false</item>
+    </style>
+    <style name="Widget.AIBookkeeping.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/surface_variant</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeColor">@color/primary</item>
+        <item name="hintTextColor">@color/text_hint</item>
+    </style>
+    <style name="Widget.AIBookkeeping.TextInputLayout.Outlined" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxStrokeColor">@color/outline</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+    </style>
+</resources>

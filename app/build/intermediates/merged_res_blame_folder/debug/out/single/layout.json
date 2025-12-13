@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/dialog_add_category.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/dialog_add_category.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/item_category_parent.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/item_category_parent.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_add_transaction.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_add_transaction.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/item_category_sub.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/item_category_sub.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/dialog_quick_add.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/dialog_quick_add.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/item_icon_picker.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/item_icon_picker.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/layout_floating_button.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/layout_floating_button.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_photo_record.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_photo_record.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_category_manage.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_category_manage.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_voice_record.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_voice_record.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_home.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/item_color_picker.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/item_color_picker.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_records.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_records.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_category_list.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_category_list.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/activity_main.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/fragment_statistics.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/fragment_statistics.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/dialog_api_key.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/dialog_api_key.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/item_category_rank.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/item_category_rank.xml"
+    },
+    {
+        "merged": "com.ai.bookkeeping.app-mergeDebugResources-51:/layout/item_transaction.xml",
+        "source": "com.ai.bookkeeping.app-main-54:/layout/item_transaction.xml"
+    }
+]
