@@ -1,12 +1,34 @@
 package com.ai.bookkeeping.model
 
+import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
  * 交易记录实体类
  */
-@Entity(tableName = "transactions")
+@Parcelize
+@Entity(
+    tableName = "transactions",
+    foreignKeys = [
+        ForeignKey(
+            entity = Account::class,
+            parentColumns = ["id"],
+            childColumns = ["accountId"],
+            onDelete = ForeignKey.SET_NULL
+        ),
+        ForeignKey(
+            entity = Notebook::class,
+            parentColumns = ["id"],
+            childColumns = ["notebookId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [Index("accountId"), Index("notebookId")]
+)
 data class Transaction(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
@@ -19,8 +41,11 @@ data class Transaction(
     val date: Long = System.currentTimeMillis(),  // 日期时间戳
     val note: String = "",           // 备注
     val aiParsed: Boolean = false,   // 是否由AI解析生成
-    val imagePath: String? = null    // 照片路径
-)
+    val imagePath: String? = null,   // 照片路径（保留兼容）
+    val imagePaths: String? = null,  // 多图片路径（JSON数组）
+    val accountId: Long? = null,     // 账户ID
+    val notebookId: Long = 1         // 账本ID
+) : Parcelable
 
 /**
  * 交易类型枚举

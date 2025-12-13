@@ -43,6 +43,11 @@ class HomeFragment : Fragment() {
     private lateinit var btnCategoryManage: MaterialButton
     private lateinit var cardFloatingToggle: MaterialCardView
     private lateinit var ivFloatingIcon: ImageView
+    private lateinit var cardAccount: MaterialCardView
+    private lateinit var cardBudget: MaterialCardView
+    private lateinit var cardNotebook: MaterialCardView
+    private lateinit var cardTransfer: MaterialCardView
+    private lateinit var cardImportBill: MaterialCardView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,6 +78,11 @@ class HomeFragment : Fragment() {
         btnCategoryManage = view.findViewById(R.id.btn_category_manage)
         cardFloatingToggle = view.findViewById(R.id.card_floating_toggle)
         ivFloatingIcon = view.findViewById(R.id.iv_floating_icon)
+        cardAccount = view.findViewById(R.id.btn_account)
+        cardBudget = view.findViewById(R.id.btn_budget)
+        cardNotebook = view.findViewById(R.id.btn_notebook)
+        cardTransfer = view.findViewById(R.id.btn_transfer)
+        cardImportBill = view.findViewById(R.id.btn_import_bill)
     }
 
     private fun setupObservers() {
@@ -132,6 +142,36 @@ class HomeFragment : Fragment() {
                 ivFloatingIcon.setImageResource(R.drawable.ic_mic_off)
             }
         }
+
+        // 账户管理
+        cardAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_account)
+        }
+
+        // 预算管理
+        cardBudget.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_budget)
+        }
+
+        // 账本管理
+        cardNotebook.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_notebook)
+        }
+
+        // 转账
+        cardTransfer.setOnClickListener {
+            showTransferDialog()
+        }
+
+        // 导入账单
+        cardImportBill.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_import)
+        }
+    }
+
+    private fun showTransferDialog() {
+        val dialog = com.ai.bookkeeping.ui.dialog.TransferDialog.newInstance()
+        dialog.show(parentFragmentManager, "transfer")
     }
 
     private fun parseAndSave(input: String) {

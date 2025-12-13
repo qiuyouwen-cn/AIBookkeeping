@@ -79,6 +79,14 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         return transactionDao.getMonthlyTotals(type, startDate, endDate)
     }
 
+    suspend fun getRecentNotes(limit: Int = 20): List<String> {
+        return transactionDao.getRecentNotes(limit)
+    }
+
+    suspend fun getRecentNotesByCategory(category: String, limit: Int = 10): List<String> {
+        return transactionDao.getRecentNotesByCategory(category, limit)
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: TransactionRepository? = null

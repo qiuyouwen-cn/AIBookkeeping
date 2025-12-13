@@ -77,4 +77,19 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
     fun getCategoryTotals(type: TransactionType, startDate: Long, endDate: Long): LiveData<List<CategoryTotal>> {
         return repository.getCategoryTotals(type, startDate, endDate)
     }
+
+    private val _recentNotes = MutableLiveData<List<String>>()
+    val recentNotes: LiveData<List<String>> = _recentNotes
+
+    fun loadRecentNotes(limit: Int = 20) {
+        viewModelScope.launch {
+            _recentNotes.value = repository.getRecentNotes(limit)
+        }
+    }
+
+    fun loadRecentNotesByCategory(category: String, limit: Int = 10) {
+        viewModelScope.launch {
+            _recentNotes.value = repository.getRecentNotesByCategory(category, limit)
+        }
+    }
 }

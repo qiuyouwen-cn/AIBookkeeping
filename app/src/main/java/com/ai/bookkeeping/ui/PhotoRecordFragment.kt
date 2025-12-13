@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -16,19 +18,21 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.ai.bookkeeping.R
 import com.ai.bookkeeping.databinding.FragmentPhotoRecordBinding
 import com.ai.bookkeeping.model.ExpenseCategories
 import com.ai.bookkeeping.model.IncomeCategories
 import com.ai.bookkeeping.model.Transaction
 import com.ai.bookkeeping.model.TransactionType
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
+import org.json.JSONArray
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 /**
- * 拍照记账Fragment
+ * 拍照记账Fragment - 支持多图片上传(最多4张)
  */
 class PhotoRecordFragment : Fragment() {
 
@@ -37,17 +41,24 @@ class PhotoRecordFragment : Fragment() {
 
     private val viewModel: TransactionViewModel by activityViewModels()
     private var currentType = TransactionType.EXPENSE
-    private var currentPhotoPath: String? = null
+
+    // 图片路径列表
+    private val photoPaths = mutableListOf<String?>(null, null, null, null)
+    private var currentPhotoIndex = 0
     private var photoUri: Uri? = null
+
+    // 图片视图数组
+    private lateinit var photoViews: Array<ImageView>
+    private lateinit var addIcons: Array<ImageView>
+    private lateinit var removeButtons: Array<ImageButton>
+    private lateinit var photoCards: Array<View>
 
     // 拍照启动器
     private val takePictureLauncher = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { success ->
         if (success && photoUri != null) {
-            binding.ivPhoto.setImageURI(photoUri)
-            binding.ivPhoto.visibility = View.VISIBLE
-            binding.tvPhotoHint.visibility = View.GONE
+            updatePhotoUI(currentPhotoIndex, photoUri!!)
         }
     }
 
@@ -58,15 +69,13 @@ class PhotoRecordFragment : Fragment() {
         uri?.let {
             // 复制到应用目录
             val file = createImageFile()
-            currentPhotoPath = file.absolutePath
+            photoPaths[currentPhotoIndex] = file.absolutePath
             requireContext().contentResolver.openInputStream(uri)?.use { input ->
                 file.outputStream().use { output ->
                     input.copyTo(output)
                 }
             }
-            binding.ivPhoto.setImageURI(uri)
-            binding.ivPhoto.visibility = View.VISIBLE
-            binding.tvPhotoHint.visibility = View.GONE
+            updatePhotoUI(currentPhotoIndex, uri)
         }
     }
 
@@ -93,9 +102,54 @@ class PhotoRecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initPhotoViews()
         setupTypeToggle()
         setupCategorySpinner()
         setupClickListeners()
+    }
+
+    private fun initPhotoViews() {
+        photoViews = arrayOf(
+            binding.ivPhoto1,
+            binding.ivPhoto2,
+            binding.ivPhoto3,
+            binding.ivPhoto4
+        )
+
+        addIcons = arrayOf(
+            binding.ivAdd1,
+            binding.ivAdd2,
+            binding.ivAdd3,
+            binding.ivAdd4
+        )
+
+        removeButtons = arrayOf(
+            binding.btnRemove1,
+            binding.btnRemove2,
+            binding.btnRemove3,
+            binding.btnRemove4
+        )
+
+        photoCards = arrayOf(
+            binding.cardPhoto1,
+            binding.cardPhoto2,
+            binding.cardPhoto3,
+            binding.cardPhoto4
+        )
+
+        // 设置点击事件
+        for (i in 0..3) {
+            photoCards[i].setOnClickListener {
+                if (photoPaths[i] == null) {
+                    currentPhotoIndex = i
+                    showPhotoOptions()
+                }
+            }
+
+            removeButtons[i].setOnClickListener {
+                removePhoto(i)
+            }
+        }
     }
 
     private fun setupTypeToggle() {
@@ -131,25 +185,37 @@ class PhotoRecordFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        // 点击拍照区域
-        binding.cardPhoto.setOnClickListener {
-            showPhotoOptions()
-        }
-
         // 拍照按钮
         binding.btnCamera.setOnClickListener {
-            checkCameraPermissionAndOpen()
+            currentPhotoIndex = findNextEmptySlot()
+            if (currentPhotoIndex >= 0) {
+                checkCameraPermissionAndOpen()
+            } else {
+                Toast.makeText(requireContext(), "已达到最大图片数量(4张)", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // 相册按钮
         binding.btnGallery.setOnClickListener {
-            pickImageLauncher.launch("image/*")
+            currentPhotoIndex = findNextEmptySlot()
+            if (currentPhotoIndex >= 0) {
+                pickImageLauncher.launch("image/*")
+            } else {
+                Toast.makeText(requireContext(), "已达到最大图片数量(4张)", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // 保存按钮
         binding.btnSave.setOnClickListener {
             saveTransaction()
         }
+    }
+
+    private fun findNextEmptySlot(): Int {
+        for (i in 0..3) {
+            if (photoPaths[i] == null) return i
+        }
+        return -1
     }
 
     private fun showPhotoOptions() {
@@ -181,7 +247,7 @@ class PhotoRecordFragment : Fragment() {
 
     private fun openCamera() {
         val photoFile = createImageFile()
-        currentPhotoPath = photoFile.absolutePath
+        photoPaths[currentPhotoIndex] = photoFile.absolutePath
         photoUri = FileProvider.getUriForFile(
             requireContext(),
             "${requireContext().packageName}.fileprovider",
@@ -194,6 +260,27 @@ class PhotoRecordFragment : Fragment() {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("IMG_${timeStamp}_", ".jpg", storageDir)
+    }
+
+    private fun updatePhotoUI(index: Int, uri: Uri) {
+        photoViews[index].setImageURI(uri)
+        photoViews[index].visibility = View.VISIBLE
+        addIcons[index].visibility = View.GONE
+        removeButtons[index].visibility = View.VISIBLE
+    }
+
+    private fun removePhoto(index: Int) {
+        // 删除文件
+        photoPaths[index]?.let { path ->
+            File(path).delete()
+        }
+        photoPaths[index] = null
+
+        // 更新UI
+        photoViews[index].setImageDrawable(null)
+        photoViews[index].visibility = View.GONE
+        addIcons[index].visibility = View.VISIBLE
+        removeButtons[index].visibility = View.GONE
     }
 
     private fun saveTransaction() {
@@ -213,6 +300,14 @@ class PhotoRecordFragment : Fragment() {
         val description = binding.etDescription.text.toString().ifEmpty { category }
         val note = binding.etNote.text.toString()
 
+        // 转换为JSON数组
+        val validPaths = photoPaths.filterNotNull()
+        val imagePathsJson = if (validPaths.isNotEmpty()) {
+            JSONArray(validPaths).toString()
+        } else {
+            null
+        }
+
         val transaction = Transaction(
             amount = amount,
             type = currentType,
@@ -220,7 +315,8 @@ class PhotoRecordFragment : Fragment() {
             description = description,
             note = note,
             aiParsed = false,
-            imagePath = currentPhotoPath
+            imagePath = validPaths.firstOrNull(),  // 兼容旧字段
+            imagePaths = imagePathsJson
         )
 
         viewModel.insert(transaction)

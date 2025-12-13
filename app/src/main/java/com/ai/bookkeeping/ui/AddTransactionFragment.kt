@@ -9,12 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.ai.bookkeeping.R
 import com.ai.bookkeeping.databinding.FragmentAddTransactionBinding
 import com.ai.bookkeeping.model.ExpenseCategories
 import com.ai.bookkeeping.model.IncomeCategories
 import com.ai.bookkeeping.model.Transaction
 import com.ai.bookkeeping.model.TransactionType
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
+import com.google.android.material.chip.Chip
 
 /**
  * 手动添加记账Fragment
@@ -42,6 +44,7 @@ class AddTransactionFragment : Fragment() {
         setupTypeToggle()
         setupCategorySpinner()
         setupSaveButton()
+        setupRecentNotes()
     }
 
     private fun setupTypeToggle() {
@@ -106,6 +109,37 @@ class AddTransactionFragment : Fragment() {
             viewModel.insert(transaction)
             Toast.makeText(requireContext(), "保存成功", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
+        }
+    }
+
+    private fun setupRecentNotes() {
+        // Load recent notes
+        viewModel.loadRecentNotes(10)
+
+        viewModel.recentNotes.observe(viewLifecycleOwner) { notes ->
+            if (notes.isNotEmpty()) {
+                binding.tvRecentNotesLabel.visibility = View.VISIBLE
+                binding.scrollRecentNotes.visibility = View.VISIBLE
+
+                binding.chipGroupRecentNotes.removeAllViews()
+                notes.forEach { note ->
+                    val chip = Chip(requireContext()).apply {
+                        text = if (note.length > 15) note.take(15) + "..." else note
+                        tag = note  // Store full note in tag
+                        isCheckable = false
+                        setChipBackgroundColorResource(R.color.surface_variant)
+                        setTextColor(resources.getColor(R.color.text_secondary, null))
+                        chipStrokeWidth = 0f
+                        setOnClickListener {
+                            binding.etNote.setText(tag as String)
+                        }
+                    }
+                    binding.chipGroupRecentNotes.addView(chip)
+                }
+            } else {
+                binding.tvRecentNotesLabel.visibility = View.GONE
+                binding.scrollRecentNotes.visibility = View.GONE
+            }
         }
     }
 

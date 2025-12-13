@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ai.bookkeeping.R
 import com.ai.bookkeeping.model.Transaction
 import com.ai.bookkeeping.model.TransactionType
+import com.ai.bookkeeping.ui.dialog.EditTransactionDialog
 import com.ai.bookkeeping.viewmodel.TransactionViewModel
 import com.google.android.material.chip.Chip
 import java.text.NumberFormat
@@ -67,7 +68,7 @@ class RecordsFragment : Fragment() {
     private fun setupRecyclerView() {
         adapter = TransactionAdapter(
             onItemClick = { transaction ->
-                // TODO: Show detail or edit dialog
+                showEditDialog(transaction)
             },
             onDeleteClick = { transaction ->
                 viewModel.delete(transaction)
@@ -75,6 +76,14 @@ class RecordsFragment : Fragment() {
         )
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+    }
+
+    private fun showEditDialog(transaction: Transaction) {
+        val dialog = EditTransactionDialog.newInstance(transaction)
+        dialog.setOnSaveListener { updatedTransaction ->
+            viewModel.update(updatedTransaction)
+        }
+        dialog.show(parentFragmentManager, "edit_transaction")
     }
 
     private fun setupChips() {

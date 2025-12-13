@@ -22,6 +22,18 @@
         <action
             android:id="@+id/action_home_to_category"
             app:destination="@id/categoryManageFragment" />
+        <action
+            android:id="@+id/action_home_to_account"
+            app:destination="@id/accountManageFragment" />
+        <action
+            android:id="@+id/action_home_to_budget"
+            app:destination="@id/budgetFragment" />
+        <action
+            android:id="@+id/action_home_to_notebook"
+            app:destination="@id/notebookManageFragment" />
+        <action
+            android:id="@+id/action_home_to_import"
+            app:destination="@id/importBillFragment" />
     </fragment>
 
     <fragment
@@ -59,5 +71,30 @@
         android:name="com.ai.bookkeeping.ui.CategoryManageFragment"
         android:label="分类管理"
         tools:layout="@layout/fragment_category_manage" />
+
+    <!-- 新增页面 -->
+    <fragment
+        android:id="@+id/accountManageFragment"
+        android:name="com.ai.bookkeeping.ui.account.AccountManageFragment"
+        android:label="账户管理"
+        tools:layout="@layout/fragment_account_manage" />
+
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.ai.bookkeeping.ui.budget.BudgetFragment"
+        android:label="预算管理"
+        tools:layout="@layout/fragment_budget" />
+
+    <fragment
+        android:id="@+id/notebookManageFragment"
+        android:name="com.ai.bookkeeping.ui.notebook.NotebookManageFragment"
+        android:label="账本管理"
+        tools:layout="@layout/fragment_notebook_manage" />
+
+    <fragment
+        android:id="@+id/importBillFragment"
+        android:name="com.ai.bookkeeping.ui.import.ImportBillFragment"
+        android:label="账单导入"
+        tools:layout="@layout/fragment_import_bill" />
 
 </navigation>

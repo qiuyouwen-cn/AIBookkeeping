@@ -66,4 +66,12 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
             onResult(maxOrder + 1)
         }
     }
+
+    fun getExpenseCategories(): LiveData<List<Category>> {
+        return repository.getCategoriesByType(TransactionType.EXPENSE).asLiveData()
+    }
+
+    fun getIncomeCategories(): LiveData<List<Category>> {
+        return repository.getCategoriesByType(TransactionType.INCOME).asLiveData()
+    }
 }
