@@ -104,59 +104,42 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- iOS Segmented Control 风格筛选 -->
-            <LinearLayout
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_ios_segmented"
-                android:padding="2dp">
+                app:chipSpacingHorizontal="8dp"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupFilter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:chipSpacingHorizontal="0dp"
-                    app:selectionRequired="true"
-                    app:singleLine="true"
-                    app:singleSelection="true">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:checked="true"
+                    android:text="全部"
+                    android:textSize="13sp" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipAll"
-                        style="@style/Widget.iOS.Chip.Segment"
-                        android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:checked="true"
-                        android:gravity="center"
-                        android:text="全部"
-                        android:textAlignment="center"
-                        android:textSize="13sp" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipExpense"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="支出"
+                    android:textSize="13sp" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipExpense"
-                        style="@style/Widget.iOS.Chip.Segment"
-                        android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="支出"
-                        android:textAlignment="center"
-                        android:textSize="13sp" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipIncome"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="收入"
+                    android:textSize="13sp" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipIncome"
-                        style="@style/Widget.iOS.Chip.Segment"
-                        android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="收入"
-                        android:textAlignment="center"
-                        android:textSize="13sp" />
-
-                </com.google.android.material.chip.ChipGroup>
-
-            </LinearLayout>
+            </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
 

@@ -175,8 +175,8 @@
     <style name="Widget.iOS.Chip.Segment" parent="Widget.Material3.Chip.Filter">
         <item name="chipCornerRadius">8dp</item>
         <item name="chipMinHeight">32dp</item>
-        <item name="chipBackgroundColor">@color/segmented_selector</item>
-        <item name="android:textColor">@color/segmented_text_selector</item>
+        <item name="chipBackgroundColor">@color/chip_bg_color_selector</item>
+        <item name="android:textColor">@color/chip_text_color_selector</item>
         <item name="chipStrokeWidth">0dp</item>
         <item name="checkedIconVisible">false</item>
         <item name="android:textSize">13sp</item>
