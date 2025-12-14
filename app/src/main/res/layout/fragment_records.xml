@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="@color/background_grouped">
 
     <!-- 顶部区域 -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_light"
+        android:background="@color/background_grouped"
         app:elevation="0dp">
 
         <LinearLayout
@@ -18,123 +18,145 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="12dp">
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
 
-            <!-- 标题 -->
+            <!-- iOS Large Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="记录"
                 android:textColor="@color/text_primary"
-                android:textSize="22sp"
+                android:textSize="34sp"
                 android:textStyle="bold" />
 
-            <!-- 本月收支概览 -->
+            <!-- 本月收支概览卡片 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <!-- 本月支出 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="本月支出"
+                            android:textColor="@color/system_gray"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvMonthExpense"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/ios_red"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="¥1,234" />
+
+                    </LinearLayout>
+
+                    <!-- 本月收入 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="本月收入"
+                            android:textColor="@color/system_gray"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvMonthIncome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/ios_green"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="¥5,000" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- iOS Segmented Control 风格筛选 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:orientation="horizontal">
+                android:background="@drawable/bg_ios_segmented"
+                android:padding="2dp">
 
-                <!-- 本月支出 -->
-                <LinearLayout
-                    android:layout_width="0dp"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupFilter"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_action"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="12dp">
+                    app:chipSpacingHorizontal="0dp"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="本月支出"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAll"
+                        style="@style/Widget.iOS.Chip.Segment"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="全部"
+                        android:textAlignment="center"
+                        android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/tvMonthExpense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:textColor="@color/expense_red"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="¥1,234" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipExpense"
+                        style="@style/Widget.iOS.Chip.Segment"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="支出"
+                        android:textAlignment="center"
+                        android:textSize="13sp" />
 
-                </LinearLayout>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipIncome"
+                        style="@style/Widget.iOS.Chip.Segment"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="收入"
+                        android:textAlignment="center"
+                        android:textSize="13sp" />
 
-                <!-- 本月收入 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_action"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="本月收入"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
-
-                    <TextView
-                        android:id="@+id/tvMonthIncome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:textColor="@color/income_green"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="¥5,000" />
-
-                </LinearLayout>
+                </com.google.android.material.chip.ChipGroup>
 
             </LinearLayout>
-
-            <!-- 筛选标签 -->
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:chipSpacingHorizontal="8dp"
-                app:selectionRequired="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAll"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:checked="true"
-                    android:text="全部"
-                    android:textSize="12sp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipExpense"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:text="支出"
-                    android:textSize="12sp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipIncome"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:text="收入"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
 
@@ -146,10 +168,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingHorizontal="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="100dp"
-        android:overScrollMode="never"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_transaction" />
 
@@ -165,26 +187,26 @@
         tools:visibility="visible">
 
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/ic_empty_records"
-            app:tint="@color/text_hint" />
+            app:tint="@color/system_gray3" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:text="暂无记录"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp" />
+            android:textColor="@color/system_gray"
+            android:textSize="17sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="开始记录你的第一笔账目吧"
-            android:textColor="@color/text_hint"
-            android:textSize="12sp" />
+            android:textColor="@color/system_gray2"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

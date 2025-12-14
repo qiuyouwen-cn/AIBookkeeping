@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
     private lateinit var btnExpense: View
     private lateinit var btnIncome: View
     private lateinit var btnCategoryManage: MaterialButton
-    private lateinit var cardFloatingToggle: MaterialCardView
+    private lateinit var cardFloatingToggle: View
     private lateinit var ivFloatingIcon: ImageView
     private lateinit var btnAccount: View
     private lateinit var btnBudget: View

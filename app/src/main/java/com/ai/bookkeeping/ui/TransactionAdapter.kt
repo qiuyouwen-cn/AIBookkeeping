@@ -107,18 +107,19 @@ class TransactionAdapter(
         }
 
         private fun getCategoryColor(category: String, type: TransactionType): Int {
+            // iOS system colors
             return when {
-                category.contains("餐") || category.contains("食") || category.contains("吃") -> Color.parseColor("#FF6B6B")
-                category.contains("交通") || category.contains("车") || category.contains("油") -> Color.parseColor("#4D96FF")
-                category.contains("购物") || category.contains("买") -> Color.parseColor("#C850C0")
-                category.contains("娱乐") || category.contains("游戏") || category.contains("电影") -> Color.parseColor("#FF8E53")
-                category.contains("医") || category.contains("药") -> Color.parseColor("#2EC4B6")
-                category.contains("教育") || category.contains("学") || category.contains("书") -> Color.parseColor("#6C63FF")
-                category.contains("住") || category.contains("房") || category.contains("租") -> Color.parseColor("#9D4EDD")
-                category.contains("通讯") || category.contains("话费") || category.contains("网") -> Color.parseColor("#00D9FF")
-                category.contains("衣") || category.contains("服") -> Color.parseColor("#A66CFF")
-                type == TransactionType.INCOME -> Color.parseColor("#6BCB77")
-                else -> Color.parseColor("#6C63FF")
+                category.contains("餐") || category.contains("食") || category.contains("吃") -> Color.parseColor("#FF9500") // iOS Orange
+                category.contains("交通") || category.contains("车") || category.contains("油") -> Color.parseColor("#5AC8FA") // iOS Cyan
+                category.contains("购物") || category.contains("买") -> Color.parseColor("#FF2D55") // iOS Pink
+                category.contains("娱乐") || category.contains("游戏") || category.contains("电影") -> Color.parseColor("#AF52DE") // iOS Purple
+                category.contains("医") || category.contains("药") -> Color.parseColor("#FF3B30") // iOS Red
+                category.contains("教育") || category.contains("学") || category.contains("书") -> Color.parseColor("#5856D6") // iOS Indigo
+                category.contains("住") || category.contains("房") || category.contains("租") -> Color.parseColor("#007AFF") // iOS Blue
+                category.contains("通讯") || category.contains("话费") || category.contains("网") -> Color.parseColor("#34C759") // iOS Green
+                category.contains("衣") || category.contains("服") -> Color.parseColor("#FF2D55") // iOS Pink
+                type == TransactionType.INCOME -> Color.parseColor("#34C759") // iOS Green
+                else -> Color.parseColor("#8E8E93") // iOS Gray
             }
         }
     }

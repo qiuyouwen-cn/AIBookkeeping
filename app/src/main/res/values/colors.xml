@@ -1,165 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ==================== 玻璃拟态设计系统 ==================== -->
+    <!-- ==================== iOS 风格设计系统 ==================== -->
 
-    <!-- 主色调 - 柔和梦幻紫蓝 -->
-    <color name="primary">#7C83FD</color>
-    <color name="primary_dark">#6366F1</color>
-    <color name="primary_light">#A5B4FC</color>
-    <color name="primary_variant">#818CF8</color>
-    <color name="primary_container">#EEF2FF</color>
+    <!-- 主色调 - iOS 系统蓝 -->
+    <color name="primary">#007AFF</color>
+    <color name="primary_dark">#0056CC</color>
+    <color name="primary_light">#4DA2FF</color>
+    <color name="primary_variant">#5AC8FA</color>
+    <color name="primary_container">#E5F2FF</color>
     <color name="on_primary">#FFFFFF</color>
-    <color name="on_primary_container">#3730A3</color>
+    <color name="on_primary_container">#004099</color>
 
-    <!-- 次要色调 - 清新薄荷 -->
-    <color name="secondary">#34D399</color>
-    <color name="secondary_dark">#10B981</color>
-    <color name="secondary_light">#6EE7B7</color>
-    <color name="secondary_container">#D1FAE5</color>
+    <!-- 次要色调 - iOS 系统青 -->
+    <color name="secondary">#5AC8FA</color>
+    <color name="secondary_dark">#32ADE6</color>
+    <color name="secondary_light">#8AD8FB</color>
+    <color name="secondary_container">#E5F7FE</color>
     <color name="on_secondary">#FFFFFF</color>
 
-    <!-- 强调色 - 温柔玫瑰 -->
-    <color name="accent">#F472B6</color>
-    <color name="accent_light">#F9A8D4</color>
-    <color name="accent_dark">#EC4899</color>
-    <color name="accent_container">#FCE7F3</color>
+    <!-- 强调色 - iOS 系统紫 -->
+    <color name="accent">#AF52DE</color>
+    <color name="accent_light">#C77DEB</color>
+    <color name="accent_dark">#8944AB</color>
+    <color name="accent_container">#F5E9FA</color>
 
-    <!-- 收入颜色 - 柔和翠绿 -->
-    <color name="income_green">#10B981</color>
-    <color name="income_green_dark">#059669</color>
-    <color name="income_green_light">#6EE7B7</color>
-    <color name="income_green_bg">#ECFDF5</color>
+    <!-- 收入颜色 - iOS 系统绿 -->
+    <color name="income_green">#34C759</color>
+    <color name="income_green_dark">#248A3D</color>
+    <color name="income_green_light">#63D884</color>
+    <color name="income_green_bg">#E8F9ED</color>
     <color name="income_green_surface">#F0FDF4</color>
 
-    <!-- 支出颜色 - 柔和珊瑚 -->
-    <color name="expense_red">#F87171</color>
-    <color name="expense_red_dark">#EF4444</color>
-    <color name="expense_red_light">#FCA5A5</color>
-    <color name="expense_red_bg">#FEF2F2</color>
+    <!-- 支出颜色 - iOS 系统红 -->
+    <color name="expense_red">#FF3B30</color>
+    <color name="expense_red_dark">#D70015</color>
+    <color name="expense_red_light">#FF6961</color>
+    <color name="expense_red_bg">#FFEBEA</color>
     <color name="expense_red_surface">#FFF5F5</color>
 
-    <!-- 玻璃拟态背景渐变色 -->
-    <color name="gradient_bg_start">#E0E7FF</color>
-    <color name="gradient_bg_center">#DBEAFE</color>
-    <color name="gradient_bg_end">#F3E8FF</color>
-
-    <!-- 背景色系 - 柔和通透 -->
-    <color name="background_primary">#F8FAFF</color>
-    <color name="background_light">#F1F5F9</color>
+    <!-- iOS 背景色系 -->
+    <color name="background_primary">#F2F2F7</color>
+    <color name="background_light">#F2F2F7</color>
     <color name="background_white">#FFFFFF</color>
     <color name="background_card">#FFFFFF</color>
-    <color name="background_gray">#F1F5F9</color>
+    <color name="background_gray">#E5E5EA</color>
     <color name="background_elevated">#FFFFFF</color>
+    <color name="background_grouped">#F2F2F7</color>
     <color name="surface">#FFFFFF</color>
-    <color name="surface_variant">#F8FAFC</color>
-    <color name="surface_light">#F1F5F9</color>
+    <color name="surface_variant">#F9F9F9</color>
+    <color name="surface_light">#F2F2F7</color>
 
-    <!-- 玻璃拟态卡片颜色 -->
-    <color name="glass_white">#CCFFFFFF</color>
-    <color name="glass_white_light">#99FFFFFF</color>
-    <color name="glass_white_dark">#E6FFFFFF</color>
-    <color name="glass_border">#40FFFFFF</color>
-    <color name="glass_primary">#407C83FD</color>
-    <color name="glass_primary_light">#207C83FD</color>
+    <!-- iOS 系统灰度 -->
+    <color name="system_gray">#8E8E93</color>
+    <color name="system_gray2">#AEAEB2</color>
+    <color name="system_gray3">#C7C7CC</color>
+    <color name="system_gray4">#D1D1D6</color>
+    <color name="system_gray5">#E5E5EA</color>
+    <color name="system_gray6">#F2F2F7</color>
 
-    <!-- 文字颜色系 - 柔和层次 -->
-    <color name="text_primary">#1E293B</color>
-    <color name="text_secondary">#64748B</color>
-    <color name="text_tertiary">#94A3B8</color>
-    <color name="text_hint">#CBD5E1</color>
-    <color name="text_disabled">#E2E8F0</color>
+    <!-- iOS 文字颜色系 -->
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#3C3C43</color>
+    <color name="text_tertiary">#8E8E93</color>
+    <color name="text_hint">#C7C7CC</color>
+    <color name="text_disabled">#D1D1D6</color>
     <color name="text_white">#FFFFFF</color>
     <color name="text_on_primary">#FFFFFF</color>
 
     <!-- 浅色主题文字 (用于深色背景) -->
-    <color name="text_secondary_light">#C7D2FE</color>
+    <color name="text_secondary_light">#EBEBF5</color>
     <color name="text_primary_light">#FFFFFF</color>
 
-    <!-- 分割线颜色 - 通透 -->
-    <color name="divider">#E2E8F0</color>
-    <color name="divider_light">#30FFFFFF</color>
-    <color name="outline">#E2E8F0</color>
-    <color name="outline_variant">#F1F5F9</color>
+    <!-- iOS 分割线颜色 -->
+    <color name="divider">#C6C6C8</color>
+    <color name="divider_light">#E5E5EA</color>
+    <color name="outline">#C6C6C8</color>
+    <color name="outline_variant">#E5E5EA</color>
+    <color name="separator">#3C3C4333</color>
+    <color name="separator_opaque">#C6C6C8</color>
 
-    <!-- 分类颜色 - 柔和糖果色 -->
-    <color name="category_food">#FB7185</color>
-    <color name="category_transport">#22D3EE</color>
-    <color name="category_shopping">#FBBF24</color>
-    <color name="category_entertainment">#4ADE80</color>
-    <color name="category_medical">#FB923C</color>
-    <color name="category_education">#A78BFA</color>
-    <color name="category_housing">#F472B6</color>
-    <color name="category_communication">#60A5FA</color>
-    <color name="category_clothing">#C084FC</color>
-    <color name="category_other">#94A3B8</color>
-    <color name="category_salary">#34D399</color>
-    <color name="category_bonus">#FACC15</color>
-    <color name="category_investment">#818CF8</color>
+    <!-- iOS 分类颜色 -->
+    <color name="category_food">#FF9500</color>
+    <color name="category_transport">#5AC8FA</color>
+    <color name="category_shopping">#FF2D55</color>
+    <color name="category_entertainment">#AF52DE</color>
+    <color name="category_medical">#FF3B30</color>
+    <color name="category_education">#5856D6</color>
+    <color name="category_housing">#007AFF</color>
+    <color name="category_communication">#34C759</color>
+    <color name="category_clothing">#FF2D55</color>
+    <color name="category_other">#8E8E93</color>
+    <color name="category_salary">#34C759</color>
+    <color name="category_bonus">#FF9500</color>
+    <color name="category_investment">#5856D6</color>
 
-    <!-- 渐变色端点 - 梦幻渐变 -->
-    <color name="gradient_start">#818CF8</color>
-    <color name="gradient_center">#A78BFA</color>
-    <color name="gradient_end">#F472B6</color>
-
-    <!-- 次要渐变 (薄荷) -->
-    <color name="gradient_secondary_start">#34D399</color>
-    <color name="gradient_secondary_end">#6EE7B7</color>
-
-    <!-- 收入渐变 -->
-    <color name="gradient_income_start">#10B981</color>
-    <color name="gradient_income_end">#34D399</color>
-
-    <!-- 支出渐变 -->
-    <color name="gradient_expense_start">#F87171</color>
-    <color name="gradient_expense_end">#FCA5A5</color>
+    <!-- iOS 系统功能色 -->
+    <color name="ios_red">#FF3B30</color>
+    <color name="ios_orange">#FF9500</color>
+    <color name="ios_yellow">#FFCC00</color>
+    <color name="ios_green">#34C759</color>
+    <color name="ios_mint">#00C7BE</color>
+    <color name="ios_teal">#30B0C7</color>
+    <color name="ios_cyan">#32ADE6</color>
+    <color name="ios_blue">#007AFF</color>
+    <color name="ios_indigo">#5856D6</color>
+    <color name="ios_purple">#AF52DE</color>
+    <color name="ios_pink">#FF2D55</color>
+    <color name="ios_brown">#A2845E</color>
 
     <!-- 基础色 -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <!-- 阴影色 - 更柔和 -->
+    <!-- 阴影色 - iOS 风格更柔和 -->
     <color name="shadow">#0A000000</color>
     <color name="shadow_light">#05000000</color>
-    <color name="shadow_medium">#10000000</color>
-    <color name="shadow_colored">#207C83FD</color>
+    <color name="shadow_medium">#12000000</color>
 
-    <!-- 快捷操作卡片背景 - 玻璃效果 -->
-    <color name="card_voice_bg">#E6EEF2FF</color>
-    <color name="card_photo_bg">#E6FCE7F3</color>
-    <color name="card_expense_bg">#E6FEF2F2</color>
-    <color name="card_income_bg">#E6ECFDF5</color>
+    <!-- 快捷操作卡片背景 -->
+    <color name="card_voice_bg">#E5F2FF</color>
+    <color name="card_photo_bg">#F5E9FA</color>
+    <color name="card_expense_bg">#FFEBEA</color>
+    <color name="card_income_bg">#E8F9ED</color>
 
     <!-- 状态颜色 -->
-    <color name="success">#10B981</color>
-    <color name="warning">#F59E0B</color>
-    <color name="error">#EF4444</color>
-    <color name="info">#3B82F6</color>
+    <color name="success">#34C759</color>
+    <color name="warning">#FF9500</color>
+    <color name="error">#FF3B30</color>
+    <color name="info">#007AFF</color>
 
-    <!-- Chip 颜色 -->
-    <color name="chip_selected_bg">#7C83FD</color>
-    <color name="chip_unselected_bg">#F1F5F9</color>
+    <!-- iOS Segmented Control / Chip 颜色 -->
+    <color name="chip_selected_bg">#007AFF</color>
+    <color name="chip_unselected_bg">#E5E5EA</color>
     <color name="chip_selected_text">#FFFFFF</color>
-    <color name="chip_unselected_text">#64748B</color>
+    <color name="chip_unselected_text">#3C3C43</color>
+    <color name="segmented_bg">#E5E5EA</color>
+    <color name="segmented_selected">#FFFFFF</color>
 
-    <!-- 底部导航 - 玻璃效果 -->
-    <color name="bottom_nav_bg">#F0FFFFFF</color>
-    <color name="bottom_nav_indicator">#EEF2FF</color>
+    <!-- iOS Tab Bar 颜色 -->
+    <color name="bottom_nav_bg">#F9F9F9</color>
+    <color name="bottom_nav_indicator">#E5F2FF</color>
+    <color name="tab_bar_bg">#F9F9F9</color>
+    <color name="tab_bar_border">#B2B2B2</color>
 
     <!-- FAB 颜色 -->
-    <color name="fab_bg">#7C83FD</color>
+    <color name="fab_bg">#007AFF</color>
     <color name="fab_icon">#FFFFFF</color>
 
-    <!-- 图表颜色 - 柔和 -->
-    <color name="chart_color_1">#818CF8</color>
-    <color name="chart_color_2">#34D399</color>
-    <color name="chart_color_3">#F472B6</color>
-    <color name="chart_color_4">#FBBF24</color>
-    <color name="chart_color_5">#22D3EE</color>
-    <color name="chart_color_6">#A78BFA</color>
-    <color name="chart_color_7">#FB7185</color>
-    <color name="chart_color_8">#60A5FA</color>
+    <!-- 图表颜色 - iOS 风格 -->
+    <color name="chart_color_1">#007AFF</color>
+    <color name="chart_color_2">#34C759</color>
+    <color name="chart_color_3">#FF9500</color>
+    <color name="chart_color_4">#FF2D55</color>
+    <color name="chart_color_5">#5AC8FA</color>
+    <color name="chart_color_6">#AF52DE</color>
+    <color name="chart_color_7">#5856D6</color>
+    <color name="chart_color_8">#FF3B30</color>
 
     <!-- 波纹颜色 -->
-    <color name="ripple_light">#157C83FD</color>
-    <color name="ripple_dark">#257C83FD</color>
+    <color name="ripple_light">#15007AFF</color>
+    <color name="ripple_dark">#25007AFF</color>
+
+    <!-- 兼容旧引用 -->
+    <color name="gradient_start">#007AFF</color>
+    <color name="gradient_center">#5AC8FA</color>
+    <color name="gradient_end">#AF52DE</color>
+    <color name="gradient_bg_start">#E5F2FF</color>
+    <color name="gradient_bg_center">#F2F2F7</color>
+    <color name="gradient_bg_end">#F5E9FA</color>
+    <color name="glass_white">#FFFFFF</color>
+    <color name="glass_white_light">#F9F9F9</color>
+    <color name="glass_white_dark">#FFFFFF</color>
+    <color name="glass_border">#E5E5EA</color>
 </resources>
