@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient_dreamy"
+    android:background="@color/background_light"
     android:fitsSystemWindows="true">
 
     <androidx.core.widget.NestedScrollView
@@ -17,58 +17,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="120dp">
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="100dp">
 
-            <!-- 顶部欢迎区域 -->
+            <!-- 顶部标题行 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="AI记账"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AI智能记账"
-                        android:textColor="@color/text_primary"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.02" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="让记账更简单"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <!-- 悬浮窗快捷入口 -->
+                <!-- 悬浮窗开关 -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_floating_toggle"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    app:cardBackgroundColor="@color/glass_white"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="@color/glass_border"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="1dp"
                     app:rippleColor="@color/ripple_light">
 
                     <ImageView
                         android:id="@+id/iv_floating_icon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_mic"
                         app:tint="@color/primary" />
@@ -77,57 +59,35 @@
 
             </LinearLayout>
 
-            <!-- 本月财务概览卡片 - 玻璃效果 -->
+            <!-- 本月概览卡片 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                app:cardBackgroundColor="@color/glass_white_dark"
-                app:cardCornerRadius="28dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/glass_border">
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="16dp">
 
-                    <!-- 标题行 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="本月概览"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_month_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="13sp"
-                            tools:text="12月" />
-
-                    </LinearLayout>
+                        android:text="本月概览"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
 
                     <!-- 收支数据 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:baselineAligned="false"
+                        android:layout_marginTop="12dp"
                         android:orientation="horizontal">
 
-                        <!-- 收入部分 -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -139,22 +99,20 @@
                                 android:layout_height="wrap_content"
                                 android:text="收入"
                                 android:textColor="@color/text_tertiary"
-                                android:textSize="13sp" />
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tv_income"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="4dp"
                                 android:textColor="@color/income_green"
-                                android:textSize="26sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:fontFamily="sans-serif-medium"
                                 tools:text="¥5,000" />
 
                         </LinearLayout>
 
-                        <!-- 支出部分 -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -166,49 +124,44 @@
                                 android:layout_height="wrap_content"
                                 android:text="支出"
                                 android:textColor="@color/text_tertiary"
-                                android:textSize="13sp" />
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tv_expense"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="4dp"
                                 android:textColor="@color/expense_red"
-                                android:textSize="26sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:fontFamily="sans-serif-medium"
                                 tools:text="¥2,500" />
 
                         </LinearLayout>
 
-                    </LinearLayout>
-
-                    <!-- 结余提示 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/bg_balance_hint"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="本月结余"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="14sp" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tv_balance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/primary"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            tools:text="¥2,500" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="结余"
+                                android:textColor="@color/text_tertiary"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/tv_balance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@color/primary"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="¥2,500" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -216,29 +169,25 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- AI智能记账输入区域 - 玻璃卡片 -->
+            <!-- AI智能记账 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@color/glass_white_dark"
-                app:cardCornerRadius="28dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/glass_border">
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="16dp">
 
-                    <!-- 标题区域 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:gravity="center_vertical">
 
                         <TextView
                             android:layout_width="0dp"
@@ -246,18 +195,18 @@
                             android:layout_weight="1"
                             android:text="AI智能记账"
                             android:textColor="@color/text_primary"
-                            android:textSize="17sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_ai_badge"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
                             android:text="AI"
                             android:textColor="@color/primary"
-                            android:textSize="11sp"
+                            android:textSize="10sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -266,17 +215,15 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="12dp"
                         android:hint="说点什么...如：午饭30"
-                        app:boxBackgroundColor="@color/glass_white"
+                        app:boxBackgroundColor="@color/surface_light"
                         app:boxBackgroundMode="filled"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusTopStart="20dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
                         app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/primary_light"
                         app:hintTextColor="@color/text_hint">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -284,277 +231,211 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            android:maxLines="2"
-                            android:paddingVertical="16dp"
+                            android:maxLines="1"
+                            android:paddingVertical="12dp"
                             android:textColor="@color/text_primary"
-                            android:textSize="15sp" />
+                            android:textSize="14sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- 智能记账按钮 -->
-                    <FrameLayout
+                    <!-- 记账按钮 -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_ai_record"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp">
+                        android:layout_height="44dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/primary"
+                        android:text="记账"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:cornerRadius="12dp"
+                        app:icon="@drawable/ic_ai_spark"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="18dp"
+                        app:iconTint="@color/white" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_ai_record"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:backgroundTint="@color/primary"
-                            android:text="智能记账"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:cornerRadius="28dp"
-                            app:elevation="0dp"
-                            app:icon="@drawable/ic_ai_spark"
-                            app:iconGravity="textStart"
-                            app:iconPadding="8dp"
-                            app:iconSize="22dp"
-                            app:iconTint="@color/white" />
-
-                        <ProgressBar
-                            android:id="@+id/progress_bar"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center"
-                            android:indeterminateTint="@color/white"
-                            android:visibility="gone" />
-
-                    </FrameLayout>
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/primary"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 快捷操作区域 -->
+            <!-- 快捷操作 - 一行4个 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
                 android:text="快捷操作"
                 android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <!-- 快捷操作 - 2x2网格 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
 
-                <!-- 第一行 -->
+                <!-- 语音 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/btn_voice_record"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_quick_action"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                    <!-- 语音记账 -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btn_voice_record"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@color/card_voice_bg"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp"
-                        app:rippleColor="@color/ripple_light">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_mic"
+                        app:tint="@color/primary" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@drawable/ic_mic"
-                                app:tint="@color/primary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="语音"
-                                android:textColor="@color/primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- 拍照记账 -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btn_photo_record"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@color/card_photo_bg"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp"
-                        app:rippleColor="#20F472B6">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@drawable/ic_camera"
-                                app:tint="@color/accent" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="拍照"
-                                android:textColor="@color/accent"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="语音"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
-                <!-- 第二行 -->
+                <!-- 拍照 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/btn_photo_record"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_quick_action"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                    <!-- 快捷支出 -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btn_quick_expense"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@color/card_expense_bg"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp"
-                        app:rippleColor="#20F87171">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_camera"
+                        app:tint="@color/accent" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="拍照"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
 
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@drawable/ic_expense"
-                                app:tint="@color/expense_red" />
+                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="支出"
-                                android:textColor="@color/expense_red"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                <!-- 支出 -->
+                <LinearLayout
+                    android:id="@+id/btn_quick_expense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_quick_action"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                        </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_expense"
+                        app:tint="@color/expense_red" />
 
-                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="支出"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
 
-                    <!-- 快捷收入 -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btn_quick_income"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@color/card_income_bg"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp"
-                        app:rippleColor="#2010B981">
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="16dp">
+                <!-- 收入 -->
+                <LinearLayout
+                    android:id="@+id/btn_quick_income"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_quick_action"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@drawable/ic_income"
-                                app:tint="@color/income_green" />
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_income"
+                        app:tint="@color/income_green" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="收入"
-                                android:textColor="@color/income_green"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="收入"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <!-- 底部操作按钮 -->
+            <!-- 功能按钮 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_manual_record"
-                    style="@style/Widget.Glass.Button.Outlined"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="52dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="6dp"
                     android:layout_weight="1"
                     android:text="手动记账"
-                    android:textSize="14sp"
+                    android:textColor="@color/primary"
+                    android:textSize="12sp"
+                    app:cornerRadius="10dp"
                     app:icon="@drawable/ic_add"
                     app:iconGravity="textStart"
-                    app:iconPadding="6dp"
-                    app:iconTint="@color/primary" />
+                    app:iconSize="16dp"
+                    app:iconTint="@color/primary"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="1dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_category_manage"
-                    style="@style/Widget.Glass.Button.Outlined"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
                     android:layout_weight="1"
                     android:text="分类管理"
                     android:textColor="@color/text_secondary"
-                    android:textSize="14sp"
-                    app:backgroundTint="@color/glass_white"
+                    android:textSize="12sp"
+                    app:cornerRadius="10dp"
                     app:icon="@drawable/ic_category"
                     app:iconGravity="textStart"
-                    app:iconPadding="6dp"
+                    app:iconSize="16dp"
                     app:iconTint="@color/text_secondary"
                     app:strokeColor="@color/outline"
                     app:strokeWidth="1dp" />
@@ -565,241 +446,153 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
                 android:text="管理工具"
                 android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <!-- 管理工具 - 4格网格 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-
-                <!-- 账户 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_account"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/glass_white"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/glass_border"
-                    app:strokeWidth="1dp"
-                    app:rippleColor="@color/ripple_light">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_wallet"
-                            app:tint="@color/primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="账户"
-                            android:textColor="@color/text_primary"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 预算 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_budget"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginHorizontal="6dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/glass_white"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/glass_border"
-                    app:strokeWidth="1dp"
-                    app:rippleColor="@color/ripple_light">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_budget"
-                            app:tint="@color/accent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="预算"
-                            android:textColor="@color/text_primary"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 账本 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_notebook"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginHorizontal="6dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/glass_white"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/glass_border"
-                    app:strokeWidth="1dp"
-                    app:rippleColor="@color/ripple_light">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_notebook"
-                            app:tint="@color/income_green" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="账本"
-                            android:textColor="@color/text_primary"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 转账 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_transfer"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/glass_white"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/glass_border"
-                    app:strokeWidth="1dp"
-                    app:rippleColor="@color/ripple_light">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_transfer_arrow"
-                            app:tint="@color/expense_red" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="转账"
-                            android:textColor="@color/text_primary"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
-            <!-- 第二行管理工具 -->
+            <!-- 工具网格 - 5个一行 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
-                <!-- 导入账单 -->
-                <com.google.android.material.card.MaterialCardView
+                <!-- 账户 -->
+                <LinearLayout
+                    android:id="@+id/btn_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_wallet"
+                        app:tint="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="账户"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <!-- 预算 -->
+                <LinearLayout
+                    android:id="@+id/btn_budget"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_budget"
+                        app:tint="@color/accent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="预算"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <!-- 账本 -->
+                <LinearLayout
+                    android:id="@+id/btn_notebook"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_notebook"
+                        app:tint="@color/income_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="账本"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <!-- 转账 -->
+                <LinearLayout
+                    android:id="@+id/btn_transfer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_transfer_arrow"
+                        app:tint="@color/category_transport" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="转账"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <!-- 导入 -->
+                <LinearLayout
                     android:id="@+id/btn_import_bill"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="@color/glass_white"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/glass_border"
-                    app:strokeWidth="1dp"
-                    app:rippleColor="@color/ripple_light">
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="8dp">
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_import"
+                        app:tint="@color/category_other" />
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_import"
-                            app:tint="@color/primary" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="导入"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="导入"
-                            android:textColor="@color/text_primary"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 占位 -->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginHorizontal="6dp"
-                    android:layout_weight="1" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginHorizontal="6dp"
-                    android:layout_weight="1" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_weight="1" />
+                </LinearLayout>
 
             </LinearLayout>
 

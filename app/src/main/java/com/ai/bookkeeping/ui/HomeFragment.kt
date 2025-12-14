@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -36,18 +37,18 @@ class HomeFragment : Fragment() {
     private lateinit var etAiInput: TextInputEditText
     private lateinit var btnAiRecord: MaterialButton
     private lateinit var progressBar: ProgressBar
-    private lateinit var cardVoice: MaterialCardView
-    private lateinit var cardPhoto: MaterialCardView
-    private lateinit var cardExpense: MaterialCardView
-    private lateinit var cardIncome: MaterialCardView
+    private lateinit var btnVoice: View
+    private lateinit var btnPhoto: View
+    private lateinit var btnExpense: View
+    private lateinit var btnIncome: View
     private lateinit var btnCategoryManage: MaterialButton
     private lateinit var cardFloatingToggle: MaterialCardView
     private lateinit var ivFloatingIcon: ImageView
-    private lateinit var cardAccount: MaterialCardView
-    private lateinit var cardBudget: MaterialCardView
-    private lateinit var cardNotebook: MaterialCardView
-    private lateinit var cardTransfer: MaterialCardView
-    private lateinit var cardImportBill: MaterialCardView
+    private lateinit var btnAccount: View
+    private lateinit var btnBudget: View
+    private lateinit var btnNotebook: View
+    private lateinit var btnTransfer: View
+    private lateinit var btnImportBill: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,18 +72,18 @@ class HomeFragment : Fragment() {
         etAiInput = view.findViewById(R.id.et_ai_input)
         btnAiRecord = view.findViewById(R.id.btn_ai_record)
         progressBar = view.findViewById(R.id.progress_bar)
-        cardVoice = view.findViewById(R.id.btn_voice_record)
-        cardPhoto = view.findViewById(R.id.btn_photo_record)
-        cardExpense = view.findViewById(R.id.btn_quick_expense)
-        cardIncome = view.findViewById(R.id.btn_quick_income)
+        btnVoice = view.findViewById(R.id.btn_voice_record)
+        btnPhoto = view.findViewById(R.id.btn_photo_record)
+        btnExpense = view.findViewById(R.id.btn_quick_expense)
+        btnIncome = view.findViewById(R.id.btn_quick_income)
         btnCategoryManage = view.findViewById(R.id.btn_category_manage)
         cardFloatingToggle = view.findViewById(R.id.card_floating_toggle)
         ivFloatingIcon = view.findViewById(R.id.iv_floating_icon)
-        cardAccount = view.findViewById(R.id.btn_account)
-        cardBudget = view.findViewById(R.id.btn_budget)
-        cardNotebook = view.findViewById(R.id.btn_notebook)
-        cardTransfer = view.findViewById(R.id.btn_transfer)
-        cardImportBill = view.findViewById(R.id.btn_import_bill)
+        btnAccount = view.findViewById(R.id.btn_account)
+        btnBudget = view.findViewById(R.id.btn_budget)
+        btnNotebook = view.findViewById(R.id.btn_notebook)
+        btnTransfer = view.findViewById(R.id.btn_transfer)
+        btnImportBill = view.findViewById(R.id.btn_import_bill)
     }
 
     private fun setupObservers() {
@@ -107,22 +108,22 @@ class HomeFragment : Fragment() {
         }
 
         // 语音记账
-        cardVoice.setOnClickListener {
+        btnVoice.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_voice)
         }
 
         // 拍照记账
-        cardPhoto.setOnClickListener {
+        btnPhoto.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_photo)
         }
 
         // 快捷支出
-        cardExpense.setOnClickListener {
+        btnExpense.setOnClickListener {
             showQuickAddDialog(TransactionType.EXPENSE)
         }
 
         // 快捷收入
-        cardIncome.setOnClickListener {
+        btnIncome.setOnClickListener {
             showQuickAddDialog(TransactionType.INCOME)
         }
 
@@ -144,27 +145,27 @@ class HomeFragment : Fragment() {
         }
 
         // 账户管理
-        cardAccount.setOnClickListener {
+        btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_account)
         }
 
         // 预算管理
-        cardBudget.setOnClickListener {
+        btnBudget.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_budget)
         }
 
         // 账本管理
-        cardNotebook.setOnClickListener {
+        btnNotebook.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_notebook)
         }
 
         // 转账
-        cardTransfer.setOnClickListener {
+        btnTransfer.setOnClickListener {
             showTransferDialog()
         }
 
         // 导入账单
-        cardImportBill.setOnClickListener {
+        btnImportBill.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_import)
         }
     }

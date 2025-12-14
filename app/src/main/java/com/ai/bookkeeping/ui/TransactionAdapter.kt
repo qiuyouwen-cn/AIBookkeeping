@@ -50,8 +50,9 @@ class TransactionAdapter(
 
         fun bind(transaction: Transaction) {
             tvCategory.text = transaction.category
-            tvDescription.text = transaction.description.ifEmpty { "无备注" }
-            tvDate.text = dateFormat.format(Date(transaction.date))
+            val desc = transaction.description.ifEmpty { "无备注" }
+            val date = dateFormat.format(Date(transaction.date))
+            tvDescription.text = "$desc · $date"
 
             // Set category icon and color
             val iconResId = getCategoryIcon(transaction.category)

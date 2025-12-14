@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="@color/glass_white_dark"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="0dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/glass_border"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp"
     app:rippleColor="@color/ripple_light">
 
     <LinearLayout
@@ -17,12 +15,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <!-- 分类图标 -->
         <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp">
+            android:layout_width="36dp"
+            android:layout_height="36dp">
 
             <View
                 android:id="@+id/viewCategoryBg"
@@ -32,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/ivCategoryIcon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_gravity="center"
                 android:contentDescription="分类图标"
                 app:tint="@color/white"
@@ -45,7 +43,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -61,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_primary"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="餐饮" />
 
@@ -69,71 +67,61 @@
                     android:id="@+id/tvAiTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="6dp"
                     android:background="@drawable/bg_ai_badge"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="2dp"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="1dp"
                     android:text="AI"
                     android:textColor="@color/primary"
-                    android:textSize="9sp"
+                    android:textSize="8sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
             </LinearLayout>
 
-            <!-- 描述 -->
+            <!-- 描述和日期 -->
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/text_tertiary"
-                android:textSize="13sp"
-                tools:text="午饭外卖" />
+                android:textSize="11sp"
+                tools:text="午饭外卖 · 12-11 12:30" />
 
-            <!-- 日期 -->
+            <!-- 日期(隐藏,合并到描述中) -->
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/text_hint"
-                android:textSize="12sp"
+                android:visibility="gone"
                 tools:text="12-11 12:30" />
 
         </LinearLayout>
 
-        <!-- 金额和操作 -->
-        <LinearLayout
+        <!-- 金额 -->
+        <TextView
+            android:id="@+id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end|center_vertical"
-            android:orientation="vertical">
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="-¥15.00"
+            tools:textColor="@color/expense_red" />
 
-            <TextView
-                android:id="@+id/tvAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-medium"
-                tools:text="-¥15.00"
-                tools:textColor="@color/expense_red" />
-
-            <ImageButton
-                android:id="@+id/btnDelete"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/bg_delete_button"
-                android:contentDescription="删除"
-                android:src="@drawable/ic_delete"
-                app:tint="@color/text_hint" />
-
-        </LinearLayout>
+        <!-- 删除按钮 -->
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="删除"
+            android:src="@drawable/ic_delete"
+            app:tint="@color/text_hint" />
 
     </LinearLayout>
 
