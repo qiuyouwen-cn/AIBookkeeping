@@ -376,7 +376,7 @@ object AIService {
      */
     private fun generateDescription(input: String, category: String): String {
         var desc = input
-            .replace(Regex("\\d+\\.?\\d*\\s*(元|块|￥|\$)?"), "")
+            .replace(Regex("\\d+\\.?\\d*\\s*(元|块|￥|\\$)?"), "")
             .replace(Regex("(花了|花费|消费|支出|收入|收到|赚了|得到)"), "")
             .replace(Regex("(今天|今日|昨天|昨日|前天|大前天|上周|上星期)"), "")
             .replace(Regex("(凌晨|早上|早晨|上午|中午|下午|傍晚|晚上|夜里|深夜)"), "")
