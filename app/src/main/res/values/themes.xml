@@ -55,6 +55,10 @@
         <item name="chipStyle">@style/Widget.iOS.Chip</item>
     </style>
 
+    <!-- ==================== iOS 基础样式 ==================== -->
+
+    <style name="Widget.iOS" parent="" />
+
     <!-- ==================== iOS 风格按钮 ==================== -->
 
     <style name="Widget.iOS.Button" parent="Widget.Material3.Button">
