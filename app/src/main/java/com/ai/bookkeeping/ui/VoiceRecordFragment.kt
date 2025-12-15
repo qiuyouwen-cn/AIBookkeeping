@@ -24,6 +24,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 /**
@@ -264,11 +266,15 @@ class VoiceRecordFragment : Fragment() {
 
                         // 保存到数据库
                         viewModel.insert(result)
-                        binding.tvStatus.text = "记账成功！"
+
+                        // 格式化解析的日期时间
+                        val dateFormat = SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA)
+                        val dateStr = dateFormat.format(Date(result.date))
+                        binding.tvStatus.text = "记账成功！($dateStr)"
 
                         Toast.makeText(
                             requireContext(),
-                            "已记录: ${result.category} ${currencyFormat.format(result.amount)}",
+                            "已记录: $dateStr ${result.category} ${currencyFormat.format(result.amount)}",
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {

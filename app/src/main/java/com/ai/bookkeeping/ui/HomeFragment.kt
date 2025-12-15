@@ -25,6 +25,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class HomeFragment : Fragment() {
@@ -190,9 +192,12 @@ class HomeFragment : Fragment() {
                         viewModel.insert(result)
                         etAiInput.text?.clear()
                         val typeStr = if (result.type == TransactionType.EXPENSE) "支出" else "收入"
+                        // 格式化解析的日期时间
+                        val dateFormat = SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA)
+                        val dateStr = dateFormat.format(Date(result.date))
                         Toast.makeText(
                             requireContext(),
-                            "已记录: ${result.category} ${currencyFormat.format(result.amount)} ($typeStr)",
+                            "已记录: $dateStr ${result.category} ${currencyFormat.format(result.amount)} ($typeStr)",
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
