@@ -71,20 +71,39 @@ class FloatingWindowService : Service() {
         setupClickListener()
     }
 
+    private var hasMoved = false
+    private var touchStartTime = 0L
+
     private fun setupTouchListener() {
-        floatingView?.setOnTouchListener { _, event ->
+        floatingView?.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     initialX = params?.x ?: 0
                     initialY = params?.y ?: 0
                     initialTouchX = event.rawX
                     initialTouchY = event.rawY
+                    hasMoved = false
+                    touchStartTime = System.currentTimeMillis()
                     true
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    params?.x = initialX + (event.rawX - initialTouchX).toInt()
-                    params?.y = initialY + (event.rawY - initialTouchY).toInt()
-                    windowManager?.updateViewLayout(floatingView, params)
+                    val deltaX = event.rawX - initialTouchX
+                    val deltaY = event.rawY - initialTouchY
+                    // 移动超过阈值才算真正移动
+                    if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+                        hasMoved = true
+                        params?.x = initialX + deltaX.toInt()
+                        params?.y = initialY + deltaY.toInt()
+                        windowManager?.updateViewLayout(floatingView, params)
+                    }
+                    true
+                }
+                MotionEvent.ACTION_UP -> {
+                    val touchDuration = System.currentTimeMillis() - touchStartTime
+                    // 如果没有移动且按压时间短，视为点击
+                    if (!hasMoved && touchDuration < 300) {
+                        openVoiceRecord()
+                    }
                     true
                 }
                 else -> false
@@ -93,15 +112,7 @@ class FloatingWindowService : Service() {
     }
 
     private fun setupClickListener() {
-        val btnFloat = floatingView?.findViewById<ImageView>(R.id.btn_floating)
-        btnFloat?.setOnClickListener {
-            // 计算移动距离，如果移动很小则视为点击
-            val moveThreshold = 10
-            if (Math.abs(initialX - (params?.x ?: 0)) < moveThreshold &&
-                Math.abs(initialY - (params?.y ?: 0)) < moveThreshold) {
-                openVoiceRecord()
-            }
-        }
+        // 点击事件已在 touchListener 中处理
     }
 
     private fun openVoiceRecord() {
