@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ai.bookkeeping.R
-import com.ai.bookkeeping.ai.ASRService
+import com.ai.bookkeeping.ai.WhisperService
 import com.ai.bookkeeping.databinding.FragmentVoiceRecordBinding
 import com.ai.bookkeeping.model.TransactionType
 import com.ai.bookkeeping.util.AIParser
@@ -30,7 +30,7 @@ import java.util.Locale
 
 /**
  * 语音记账Fragment
- * 使用自定义 ASR 服务进行语音识别
+ * 使用 Groq Whisper API 进行语音识别
  */
 class VoiceRecordFragment : Fragment() {
 
@@ -64,18 +64,25 @@ class VoiceRecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 初始化 ASR 服务
-        ASRService.init(requireContext())
+        // 初始化 Whisper 服务
+        WhisperService.init(requireContext())
 
         setupUI()
         setupClickListeners()
-        setupASRCallbacks()
+        setupWhisperCallbacks()
     }
 
     private fun setupUI() {
-        binding.tvStatus.text = "点击下方按钮开始"
+        binding.tvStatus.text = "点击下方按钮开始语音记账"
         binding.cardResult.visibility = View.GONE
         binding.tvRecognizedText.visibility = View.GONE
+        updateApiKeyHint()
+    }
+
+    private fun updateApiKeyHint() {
+        if (!WhisperService.hasApiKey(requireContext())) {
+            binding.tvStatus.text = "请先设置 Groq API Key（长按按钮）"
+        }
     }
 
     private fun setupClickListeners() {
@@ -83,55 +90,45 @@ class VoiceRecordFragment : Fragment() {
             if (isRecording) {
                 stopRecording()
             } else {
-                // 检查是否配置了服务器
-                if (!ASRService.hasServerConfig(requireContext())) {
-                    showServerConfigDialog()
+                // 检查是否配置了 API Key
+                if (!WhisperService.hasApiKey(requireContext())) {
+                    showApiKeyDialog()
                 } else {
                     checkPermissionAndStart()
                 }
             }
         }
 
-        // 长按设置服务器
+        // 长按设置 API Key
         binding.btnVoice.setOnLongClickListener {
-            showServerConfigDialog()
+            showApiKeyDialog()
             true
         }
     }
 
-    private fun setupASRCallbacks() {
-        ASRService.onStateChange = { state ->
+    private fun setupWhisperCallbacks() {
+        WhisperService.onStateChange = { state ->
             activity?.runOnUiThread {
                 when (state) {
-                    ASRService.RecordingState.IDLE -> {
-                        binding.tvStatus.text = "点击下方按钮开始"
+                    WhisperService.RecordingState.IDLE -> {
+                        binding.tvStatus.text = "点击下方按钮开始语音记账"
                     }
-                    ASRService.RecordingState.CONNECTING -> {
-                        binding.tvStatus.text = "正在连接..."
-                    }
-                    ASRService.RecordingState.RECORDING -> {
-                        binding.tvStatus.text = "正在聆听..."
+                    WhisperService.RecordingState.RECORDING -> {
+                        binding.tvStatus.text = "正在聆听...（点击停止）"
                         binding.animationView.visibility = View.VISIBLE
                     }
-                    ASRService.RecordingState.PROCESSING -> {
+                    WhisperService.RecordingState.PROCESSING -> {
                         binding.tvStatus.text = "正在识别..."
                         binding.animationView.visibility = View.GONE
                     }
-                    ASRService.RecordingState.COMPLETED -> {
+                    WhisperService.RecordingState.COMPLETED -> {
                         binding.tvStatus.text = "识别完成"
                     }
-                    ASRService.RecordingState.ERROR -> {
+                    WhisperService.RecordingState.ERROR -> {
                         binding.tvStatus.text = "识别失败"
                         binding.animationView.visibility = View.GONE
                     }
                 }
-            }
-        }
-
-        ASRService.onError = { error ->
-            activity?.runOnUiThread {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
-                stopRecordingUI()
             }
         }
     }
@@ -157,54 +154,16 @@ class VoiceRecordFragment : Fragment() {
         binding.tvRecognizedText.visibility = View.GONE
         binding.cardResult.visibility = View.GONE
         binding.animationView.visibility = View.VISIBLE
-        binding.tvStatus.text = "正在聆听..."
-
-        // 使用流式识别
-        ASRService.startStreaming(
-            onPartialResult = { text ->
-                activity?.runOnUiThread {
-                    if (text.isNotEmpty()) {
-                        binding.tvRecognizedText.text = "\"$text\""
-                        binding.tvRecognizedText.visibility = View.VISIBLE
-                    }
-                }
-            },
-            onFinalResult = { text ->
-                activity?.runOnUiThread {
-                    if (text.isNotEmpty()) {
-                        binding.tvRecognizedText.text = "\"$text\""
-                        binding.tvRecognizedText.visibility = View.VISIBLE
-                        parseAndSave(text)
-                    } else {
-                        binding.tvStatus.text = "未能识别，请重试"
-                    }
-                    stopRecordingUI()
-                }
-            },
-            onStreamError = { error ->
-                activity?.runOnUiThread {
-                    binding.tvStatus.text = "识别错误: $error"
-                    stopRecordingUI()
-
-                    // 如果流式识别失败，尝试使用文件转录方式
-                    tryFileTranscribe()
-                }
-            }
-        )
-    }
-
-    /**
-     * 尝试使用文件转录方式（作为流式识别的备用方案）
-     */
-    private fun tryFileTranscribe() {
-        isRecording = true
-        binding.btnVoice.setIconResource(R.drawable.ic_stop)
-        binding.btnVoice.text = "录音中..."
-        binding.tvStatus.text = "正在录音（最长10秒）..."
-        binding.animationView.visibility = View.VISIBLE
+        binding.tvStatus.text = "正在聆听...（最长15秒）"
 
         CoroutineScope(Dispatchers.Main).launch {
-            val result = ASRService.recordAndTranscribe(requireContext(), 10000)
+            val result = WhisperService.recordAndTranscribe(
+                context = requireContext(),
+                maxDurationMs = 15000,
+                onAmplitude = { amplitude ->
+                    // 可以用于显示波形动画
+                }
+            )
 
             result.fold(
                 onSuccess = { text ->
@@ -213,11 +172,17 @@ class VoiceRecordFragment : Fragment() {
                         binding.tvRecognizedText.visibility = View.VISIBLE
                         parseAndSave(text)
                     } else {
-                        binding.tvStatus.text = "未能识别，请重试"
+                        binding.tvStatus.text = "未识别到语音，请重试"
                     }
                 },
                 onFailure = { error ->
-                    binding.tvStatus.text = "识别失败: ${error.message}"
+                    val errorMsg = error.message ?: "未知错误"
+                    binding.tvStatus.text = "识别失败: $errorMsg"
+
+                    // 如果是 API Key 问题，提示设置
+                    if (errorMsg.contains("API Key") || errorMsg.contains("api_key")) {
+                        showApiKeyDialog()
+                    }
                 }
             )
 
@@ -226,8 +191,8 @@ class VoiceRecordFragment : Fragment() {
     }
 
     private fun stopRecording() {
-        ASRService.finishRecording()
-        stopRecordingUI()
+        WhisperService.stopRecording()
+        // 录音会在下一次循环检测到停止标志后自然结束
     }
 
     private fun stopRecordingUI() {
@@ -291,35 +256,50 @@ class VoiceRecordFragment : Fragment() {
     }
 
     /**
-     * 显示服务器配置对话框
+     * 显示 API Key 配置对话框
      */
-    private fun showServerConfigDialog() {
+    private fun showApiKeyDialog() {
         val dialogView = LayoutInflater.from(requireContext())
-            .inflate(R.layout.dialog_asr_server, null)
+            .inflate(R.layout.dialog_api_key, null)
 
-        val etServerUrl = dialogView.findViewById<TextInputEditText>(R.id.etServerUrl)
-        val currentUrl = ASRService.getServerUrl(requireContext())
-        if (currentUrl != "YOUR_SERVER:5678") {
-            etServerUrl.setText(currentUrl)
+        val etApiKey = dialogView.findViewById<TextInputEditText>(R.id.etApiKey)
+        val currentKey = WhisperService.getApiKey(requireContext())
+        if (!currentKey.isNullOrEmpty()) {
+            // 显示部分 key
+            etApiKey.setText(currentKey.take(8) + "..." + currentKey.takeLast(4))
         }
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("设置语音识别服务器")
+            .setTitle("设置 Groq API Key")
+            .setMessage("用于语音识别（Whisper）\n\n获取地址: console.groq.com/keys")
             .setView(dialogView)
             .setPositiveButton("保存") { _, _ ->
-                val serverUrl = etServerUrl.text.toString().trim()
-                if (serverUrl.isNotEmpty()) {
-                    ASRService.setServerUrl(requireContext(), serverUrl)
-                    Toast.makeText(requireContext(), "服务器地址已保存", Toast.LENGTH_SHORT).show()
+                val apiKey = etApiKey.text.toString().trim()
+                if (apiKey.isNotEmpty() && !apiKey.contains("...")) {
+                    WhisperService.setApiKey(requireContext(), apiKey)
+                    Toast.makeText(requireContext(), "API Key 已保存", Toast.LENGTH_SHORT).show()
+                    binding.tvStatus.text = "点击下方按钮开始语音记账"
                 }
             }
             .setNegativeButton("取消", null)
+            .setNeutralButton("获取Key") { _, _ ->
+                // 打开浏览器
+                try {
+                    val intent = android.content.Intent(
+                        android.content.Intent.ACTION_VIEW,
+                        android.net.Uri.parse("https://console.groq.com/keys")
+                    )
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "请访问 console.groq.com/keys", Toast.LENGTH_LONG).show()
+                }
+            }
             .show()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        ASRService.release()
+        WhisperService.release()
         _binding = null
     }
 }
