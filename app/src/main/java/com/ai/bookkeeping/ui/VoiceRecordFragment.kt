@@ -81,7 +81,7 @@ class VoiceRecordFragment : Fragment() {
 
     private fun updateApiKeyHint() {
         if (!WhisperService.hasApiKey(requireContext())) {
-            binding.tvStatus.text = "请先设置 Groq API Key（长按按钮）"
+            binding.tvStatus.text = "请先设置 API Key（长按按钮）"
         }
     }
 
@@ -270,8 +270,8 @@ class VoiceRecordFragment : Fragment() {
         }
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("设置 Groq API Key")
-            .setMessage("用于语音识别（Whisper）\n\n获取地址: console.groq.com/keys")
+            .setTitle("设置语音识别 API Key")
+            .setMessage("使用硅基流动提供的语音识别服务\n\n获取地址: cloud.siliconflow.cn")
             .setView(dialogView)
             .setPositiveButton("保存") { _, _ ->
                 val apiKey = etApiKey.text.toString().trim()
@@ -287,11 +287,11 @@ class VoiceRecordFragment : Fragment() {
                 try {
                     val intent = android.content.Intent(
                         android.content.Intent.ACTION_VIEW,
-                        android.net.Uri.parse("https://console.groq.com/keys")
+                        android.net.Uri.parse("https://cloud.siliconflow.cn/account/ak")
                     )
                     startActivity(intent)
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "请访问 console.groq.com/keys", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "请访问 cloud.siliconflow.cn", Toast.LENGTH_LONG).show()
                 }
             }
             .show()

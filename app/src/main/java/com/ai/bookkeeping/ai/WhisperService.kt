@@ -17,17 +17,17 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Whisper 语音识别服务
- * 使用 Groq API 提供的 Whisper 模型进行语音转文字
+ * 使用硅基流动 (SiliconFlow) 提供的 Whisper 模型进行语音转文字
  *
- * Groq 提供免费额度，支持中文识别
- * 获取API Key: https://console.groq.com/keys
+ * 硅基流动国内可访问，提供免费额度，支持中文识别
+ * 获取API Key: https://cloud.siliconflow.cn/account/ak
  */
 object WhisperService {
 
     private const val TAG = "WhisperService"
-    private const val GROQ_API_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
+    private const val API_URL = "https://api.siliconflow.cn/v1/audio/transcriptions"
     private const val PREFS_NAME = "whisper_settings"
-    private const val KEY_API_KEY = "groq_api_key"
+    private const val KEY_API_KEY = "siliconflow_api_key"
 
     // 录音参数
     private const val SAMPLE_RATE = 16000
@@ -200,7 +200,7 @@ object WhisperService {
     }
 
     /**
-     * 使用 Groq Whisper API 进行转录
+     * 使用硅基流动 Whisper API 进行转录
      */
     private suspend fun transcribe(audioFile: File, apiKey: String): Result<String> = withContext(Dispatchers.IO) {
         try {
@@ -211,13 +211,11 @@ object WhisperService {
                     audioFile.name,
                     audioFile.asRequestBody("audio/wav".toMediaType())
                 )
-                .addFormDataPart("model", "whisper-large-v3")
-                .addFormDataPart("language", "zh")
-                .addFormDataPart("response_format", "json")
+                .addFormDataPart("model", "FunAudioLLM/SenseVoiceSmall")
                 .build()
 
             val request = Request.Builder()
-                .url(GROQ_API_URL)
+                .url(API_URL)
                 .addHeader("Authorization", "Bearer $apiKey")
                 .post(requestBody)
                 .build()
